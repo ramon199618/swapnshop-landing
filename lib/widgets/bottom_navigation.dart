@@ -88,6 +88,7 @@ class SimpleBottomNavigation extends StatelessWidget {
       onTap: onTap,
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.store), label: 'Stores'),
         BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Matches'),
         BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),

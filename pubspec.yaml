@@ -1,5 +1,5 @@
 name: swapshop_clean
-description: "A new Flutter project."
+description: "Swap&Shop - Die App für nachhaltigen Konsum"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.8.1
+  sdk: '>=3.0.0 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -30,35 +30,23 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
   cupertino_icons: ^1.0.2
-  
-  # Image picker for profile pictures and listing images
-  image_picker: ^1.0.7
-  
-  # Path provider for file system access
-  path_provider: ^2.1.2
-  
-  # Shared preferences for local storage
+  provider: ^6.1.1
   shared_preferences: ^2.2.2
-  
-  # Path utilities
+  image_picker: ^1.0.4
+  cached_network_image: ^3.3.0
+  geolocator: ^10.1.0
+  permission_handler: ^11.0.1
+  http: ^1.1.0
+  url_launcher: ^6.2.1
+  crypto: ^3.0.3
+  supabase_flutter: ^2.0.0
+  path_provider: ^2.1.2
   path: ^1.8.3
-  
-  # Temporär Firebase-Abhängigkeiten auskommentiert
-  # # Firebase Core
-  # firebase_core: ^2.24.2
-  # 
-  # # Cloud Firestore for database
-  # cloud_firestore: ^4.13.6
-  # 
-  # # Firebase Auth
-  # firebase_auth: ^4.16.0
-  # 
-  # # Firebase Storage
-  # firebase_storage: ^11.6.7
+  geocoding: ^2.2.2
 
 dev_dependencies:
   flutter_test:
@@ -69,7 +57,9 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+  flutter_lints: ^3.0.0
+  flutter_gen_runner: ^5.4.0
+  flutter_launcher_icons: ^0.13.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -81,14 +71,31 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  generate: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/icon/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
+
+# Flutter Launcher Icons configuration
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
+  remove_alpha_ios: true
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/icon/icon.png"
+  windows:
+    generate: true
+    image_path: "assets/icon/icon.png"
+  macos:
+    generate: true
+    image_path: "assets/icon/icon.png"
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/to/asset-from-package

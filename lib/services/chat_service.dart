@@ -1,72 +1,97 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
+import 'package:flutter/material.dart';
+import '../models/chat_model.dart';
+import '../services/database_service.dart';
+import '../services/auth_service.dart';
 
-class ChatService {
-  // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+class ChatService extends ChangeNotifier {
+  final StreamController<List<ChatModel>> _chatsController =
+      StreamController<List<ChatModel>>.broadcast();
 
-  Future<String> createOrGetChat({
-    required String userA,
-    required String userB,
-  }) async {
-    // TODO: Firebase wieder aktivieren
-    // final participants = [userA, userB]..sort();
-    // final chatQuery = await _firestore
-    //     .collection('chats')
-    //     .where('participants', isEqualTo: participants)
-    //     .limit(1)
-    //     .get();
-    // if (chatQuery.docs.isNotEmpty) {
-    //   return chatQuery.docs.first.id;
-    // }
-    // final chatDoc = await _firestore.collection('chats').add({
-    //   'participants': participants,
-    //   'createdAt': FieldValue.serverTimestamp(),
-    //   'lastMessage': '',
-    //   'lastMessageTime': FieldValue.serverTimestamp(),
-    // });
-    // return chatDoc.id;
+  Stream<List<ChatModel>> get chatsStream => _chatsController.stream;
 
-    // Dummy-Chat-ID für Entwicklung
-    await Future.delayed(const Duration(milliseconds: 300));
-    return 'dummy_chat_${DateTime.now().millisecondsSinceEpoch}';
+  // Chat erstellen oder abrufen
+  Future<String> createOrGetChat(String userA, String userB) async {
+    try {
+      final currentUser = AuthService.getCurrentUser();
+      if (currentUser == null) {
+        throw Exception('User nicht angemeldet');
+      }
+
+      // Prüfe ob Chat bereits existiert
+      final existingChats = await DatabaseService.getUserChats(currentUser.id);
+      try {
+        final existingChat = existingChats.firstWhere(
+          (chat) =>
+              (chat.buyerId == userA && chat.sellerId == userB) ||
+              (chat.buyerId == userB && chat.sellerId == userA),
+        );
+        return existingChat.id;
+      } catch (e) {
+        // Chat nicht gefunden, erstelle neuen
+      }
+
+      // Erstelle neuen Chat
+      final newChat = await DatabaseService.createChat(
+        '', // listingId (optional)
+        userA, // buyerId
+        userB, // sellerId
+      );
+
+      return newChat?.id ?? '';
+    } catch (e) {
+      debugPrint('❌ Fehler beim Erstellen/Abrufen des Chats: $e');
+      return '';
+    }
   }
 
-  Stream<dynamic> getChatMessages(String chatId) {
-    // TODO: Firebase wieder aktivieren
-    // return _firestore
-    //     .collection('chats')
-    //     .doc(chatId)
-    //     .collection('messages')
-    //     .orderBy('timestamp', descending: true)
-    //     .snapshots();
-
-    // Dummy-Stream für Entwicklung
-    return Stream.value(null);
+  // Alle Chats für User laden
+  Future<List<ChatModel>> getChats(String userId) async {
+    try {
+      return await DatabaseService.getUserChats(userId);
+    } catch (e) {
+      debugPrint('❌ Fehler beim Laden der Chats: $e');
+      return [];
+    }
   }
 
-  Future<void> sendMessage(
+  // Nachrichten für Chat laden
+  Future<List<ChatMessage>> getChatMessages(String chatId) async {
+    try {
+      return await DatabaseService.getChatMessages(chatId);
+    } catch (e) {
+      debugPrint('❌ Fehler beim Laden der Nachrichten: $e');
+      return [];
+    }
+  }
+
+  // Nachricht senden
+  Future<bool> sendMessage(
     String chatId,
     String message,
     String senderId,
   ) async {
-    // TODO: Firebase wieder aktivieren
-    // await _firestore
-    //     .collection('chats')
-    //     .doc(chatId)
-    //     .collection('messages')
-    //     .add({
-    //   'text': message,
-    //   'senderId': senderId,
-    //   'timestamp': FieldValue.serverTimestamp(),
-    // });
-    // await _firestore.collection('chats').doc(chatId).update({
-    //   'lastMessage': message,
-    //   'lastMessageTime': FieldValue.serverTimestamp(),
-    // });
+    try {
+      final chatMessage = ChatMessage(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        chatId: chatId,
+        userId: senderId,
+        message: message,
+        createdAt: DateTime.now(),
+      );
 
-    // Dummy für Entwicklung
-    await Future.delayed(const Duration(milliseconds: 200));
-    print('Nachricht würde gesendet: $message');
+      await DatabaseService.sendMessage(chatMessage);
+      return true;
+    } catch (e) {
+      debugPrint('❌ Fehler beim Senden der Nachricht: $e');
+      return false;
+    }
+  }
+
+  // Dispose
+  @override
+  void dispose() {
+    _chatsController.close();
+    super.dispose();
   }
 }
-
-// TODO: ChatService für später implementieren

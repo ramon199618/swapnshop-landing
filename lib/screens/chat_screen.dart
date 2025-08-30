@@ -3,9 +3,8 @@ import '../widgets/chat_tile.dart';
 import '../constants/colors.dart';
 import '../constants/texts.dart';
 import 'chat_detail_screen.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+// import '../services/auth_service.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
-// import '../models/chat.dart'; // TODO: Für späteres Datenmodell
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -15,15 +14,6 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  late final String _currentUserId;
-
-  @override
-  void initState() {
-    super.initState();
-    // _currentUserId = FirebaseAuth.instance.currentUser?.uid ?? '';
-    _currentUserId = 'dummy_user_123';
-  }
-
   void _openChat(String chatId, String userName) {
     Navigator.push(
       context,
@@ -38,11 +28,14 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color.fromRGBO(255, 87, 34, 0.1), Colors.white],
+            colors: [
+              Color.fromRGBO(255, 87, 34, 0.1),
+              Color(0x00000000), // Placeholder, wird durch Theme ersetzt
+            ],
           ),
         ),
         child: Column(
@@ -51,19 +44,20 @@ class _ChatScreenState extends State<ChatScreen> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
+                color: Theme.of(context).cardColor,
+                boxShadow: const [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Color.fromRGBO(0, 0, 0, 0.1),
                     blurRadius: 4,
-                    offset: const Offset(0, 2),
+                    offset: Offset(0, 2),
                   ),
                 ],
               ),
-              child: Row(
+              child: const Row(
                 children: [
-                  Icon(Icons.chat_bubble, color: AppColors.primary, size: 28),
-                  const SizedBox(width: 12),
+                  Icon(Icons.chat_bubble,
+                      color: AppColors.primary, size: 28),
+                  SizedBox(width: 12),
                   Text(
                     AppTexts.chatTitle,
                     style: TextStyle(
@@ -72,7 +66,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       color: AppColors.primary,
                     ),
                   ),
-                  const Spacer(),
+                  Spacer(),
                   // Kein Refresh nötig, da StreamBuilder
                 ],
               ),
@@ -87,21 +81,21 @@ class _ChatScreenState extends State<ChatScreen> {
                   }
                   final chats = snapshot.data ?? [];
                   if (chats.isEmpty) {
-                    return Center(
+                    return const Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
                             Icons.chat_bubble_outline,
                             size: 64,
-                            color: Colors.grey.shade400,
+                            color: Colors.grey,
                           ),
-                          const SizedBox(height: 16),
+                          SizedBox(height: 16),
                           Text(
                             AppTexts.noChats,
                             style: TextStyle(
                               fontSize: 18,
-                              color: Colors.grey.shade600,
+                              color: Colors.grey,
                             ),
                           ),
                         ],

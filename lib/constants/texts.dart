@@ -2,6 +2,14 @@
 
 class AppTexts {
   static const String appTitle = 'Swap&Shop';
+
+  // Navigation
+  static const String home = 'Home';
+  static const String matches = 'Matches';
+  static const String chat = 'Chat';
+  static const String groups = 'Groups';
+  static const String profile = 'Profil';
+
   static const String noItems = 'Keine Artikel verfügbar';
   static const String searchTitle = 'Artikel suchen';
   static const String searchHint = 'Suchbegriff eingeben';
@@ -39,8 +47,10 @@ class AppTexts {
   static const String noMatchesOrLikes = 'Noch keine Matches oder Likes.';
   static const String matchesTab = 'Matches';
   static const String likedTab = 'Likes';
+  static const String myLikedTab = 'Liked';
   static const String noMatches = 'Noch keine Matches.';
   static const String noLikes = 'Noch keine Likes.';
+  static const String noMyLikes = 'Noch keine gelikten Artikel.';
 
   // Chat Screen
   static const String chatsTitle = 'Chats';
@@ -59,9 +69,32 @@ class AppTexts {
       'Erstelle oder verwalte deine Communities';
   static const String myListings = 'Meine Inserate';
   static const String settings = 'Einstellungen';
-  static const String logout = 'Logout';
+  static const String logout = 'Abmelden';
   static const String editListing = 'Bearbeite Inserat';
-  static const String settingsTodo = 'Einstellungen (TODO)';
-  static const String logoutTodo = 'Logout (TODO)';
-  static const String communitiesTodo = 'Communities (TODO)';
+
+  static const String noItemsInCategory = 'Keine Artikel in dieser Kategorie';
+  static const String tryDifferentFilter = 'Versuche einen anderen Filter';
+  static const String distanceAway = 'km entfernt';
+  static const String anonymousUser = 'Anonym';
+  static const String newCommunity = 'Neue Community erstellen';
+  static const String newCommunitySubtitle =
+      'Erstelle eine neue Community für deine Interessen';
+  static const String joinCommunity = 'Beitreten';
+  static const String joinedCommunity = 'Beigetreten';
+  static const String members = 'Mitglieder';
+  
+  // Profile Screen
+  static const String settingsTodo = 'Einstellungen';
+  static const String communitiesTodo = 'Communities';
+  static const String logoutTodo = 'Abmelden';
+  
+  // Premium
+  static const String premiumTitle = 'Premium werden';
+  static const String premiumSubtitle = 'Unbegrenzte Möglichkeiten mit Premium';
+  static const String premiumMonthly = 'Monatsabo';
+  static const String premiumYearly = 'Jahresabo';
+  static const String premiumPrice = 'Preis';
+  static const String premiumFeatures = 'Features';
+  static const String premiumUpgrade = 'Upgrade';
+  static const String premiumCancel = 'Abbrechen';
 }

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';
-import '../constants/texts.dart';
+import '../services/chat_service.dart';
+import '../services/auth_service.dart';
 import '../widgets/chat_message_tile.dart';
-// import '../services/chat_service.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatDetailScreen extends StatefulWidget {
   final String chatId;
@@ -22,59 +20,56 @@ class ChatDetailScreen extends StatefulWidget {
 
 class _ChatDetailScreenState extends State<ChatDetailScreen> {
   final TextEditingController _messageController = TextEditingController();
-  // final ChatService _chatService = ChatService();
-  // String? _currentUserId;
   final List<Map<String, dynamic>> _messages = [];
+  final ChatService _chatService = ChatService();
+  String? _currentUserId;
 
   @override
   void initState() {
     super.initState();
-    // _currentUserId = FirebaseAuth.instance.currentUser?.uid ?? '';
-    _loadDummyMessages();
+    _loadCurrentUser();
+    _loadMessages();
   }
 
-  void _loadDummyMessages() {
-    // TODO: Firebase wieder aktivieren
-    // _chatService.getChatMessages(widget.chatId).listen((snapshot) {
-    //   if (snapshot != null) {
-    //     setState(() {
-    //       _messages.clear();
-    //       for (var doc in snapshot.docs) {
-    //         _messages.add(doc.data());
-    //       }
-    //     });
-    //   }
-    // });
-
-    // Dummy-Nachrichten für Entwicklung
-    setState(() {
-      _messages.addAll([
-        {
-          'text': 'Hallo! Ist das Snowboard noch verfügbar?',
-          'senderId': 'other_user',
-          'timestamp': DateTime.now().subtract(const Duration(minutes: 5)),
-        },
-        {
-          'text': 'Ja, ist es! Möchtest du es tauschen?',
-          'senderId': 'dummy_user_123',
-          'timestamp': DateTime.now().subtract(const Duration(minutes: 3)),
-        },
-        {
-          'text': 'Gerne! Was suchst du dafür?',
-          'senderId': 'other_user',
-          'timestamp': DateTime.now().subtract(const Duration(minutes: 1)),
-        },
-      ]);
-    });
+  Future<void> _loadCurrentUser() async {
+    try {
+      final user = AuthService.getCurrentUser();
+      if (user != null) {
+        setState(() {
+          _currentUserId = user.id;
+        });
+      }
+    } catch (e) {
+      debugPrint('❌ Error loading current user: $e');
+    }
   }
 
-  void _sendMessage() async {
+  Future<void> _loadMessages() async {
+    try {
+      final messages = await _chatService.getChatMessages(widget.chatId);
+
+      setState(() {
+        _messages.clear();
+        for (final message in messages) {
+          _messages.add({
+            'text': message.message,
+            'senderId': message.userId,
+            'timestamp': message.createdAt,
+          });
+        }
+      });
+    } catch (e) {
+      debugPrint('❌ Error loading messages: $e');
+    }
+  }
+
+  Future<void> _sendMessage() async {
     final message = _messageController.text.trim();
-    if (message.isEmpty) return;
+    if (message.isEmpty || _currentUserId == null) return;
 
     final newMessage = {
       'text': message,
-      'senderId': 'dummy_user_123',
+      'senderId': _currentUserId,
       'timestamp': DateTime.now(),
     };
 
@@ -84,10 +79,33 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
 
     _messageController.clear();
 
-    // TODO: Firebase wieder aktivieren
-    // await _chatService.sendMessage(widget.chatId, message, _currentUserId!);
-    await Future.delayed(const Duration(milliseconds: 200));
-    print('Nachricht würde gesendet: $message');
+    try {
+      final success = await _chatService.sendMessage(
+        widget.chatId,
+        message,
+        _currentUserId!,
+      );
+
+      if (!success && mounted) {
+        // Remove the message if sending failed
+        setState(() {
+          _messages.removeLast();
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Fehler beim Senden der Nachricht')),
+        );
+      }
+    } catch (e) {
+      debugPrint('❌ Error sending message: $e');
+      if (mounted) {
+        setState(() {
+          _messages.removeLast();
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Fehler beim Senden der Nachricht')),
+        );
+      }
+    }
   }
 
   @override
@@ -107,7 +125,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 final message = _messages[_messages.length - 1 - index];
-                final isMe = message['senderId'] == 'dummy_user_123';
+                final isMe = message['senderId'] == _currentUserId;
 
                 return ChatMessageTile(
                   message: message['text'],
@@ -123,7 +141,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withValues(alpha: 0.1),
                   blurRadius: 4,
                   offset: const Offset(0, -2),
                 ),
@@ -135,7 +153,8 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                   child: TextField(
                     controller: _messageController,
                     decoration: const InputDecoration(
-                      hintText: AppTexts.typeMessage,
+                      hintText:
+                          'Type a message...', // Changed from AppTexts.typeMessage
                       border: OutlineInputBorder(),
                     ),
                     onSubmitted: (_) => _sendMessage(),
@@ -144,7 +163,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                 const SizedBox(width: 8),
                 IconButton(
                   onPressed: _sendMessage,
-                  icon: Icon(Icons.send, color: AppColors.primary),
+                  icon: const Icon(Icons.send, color: AppColors.primary),
                 ),
               ],
             ),

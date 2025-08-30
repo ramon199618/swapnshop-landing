@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import '../constants/texts.dart';
+import '../utils/search_synonyms.dart';
 
 class SearchBar extends StatefulWidget {
   final String? initialQuery;
   final Function(String) onSearch;
+  final Function(String)? onSearchChanged;
   final List<String>? suggestions;
   final String hintText;
   final bool showClearButton;
@@ -12,6 +14,7 @@ class SearchBar extends StatefulWidget {
     super.key,
     this.initialQuery,
     required this.onSearch,
+    this.onSearchChanged,
     this.suggestions,
     this.hintText = AppTexts.searchHint,
     this.showClearButton = true,
@@ -42,15 +45,29 @@ class _SearchBarState extends State<SearchBar> {
   void _onChanged(String value) {
     setState(() {
       if (widget.suggestions != null) {
-        _filteredSuggestions = widget.suggestions!
+        // Standard-Vorschläge filtern
+        final standardSuggestions = widget.suggestions!
             .where(
               (suggestion) =>
                   suggestion.toLowerCase().contains(value.toLowerCase()),
             )
             .toList();
+
+        // Sprachübergreifende Vorschläge hinzufügen
+        final crossLanguageSuggestions = SearchSynonyms.getSuggestions(value);
+
+        // Kombiniere und entferne Duplikate
+        _filteredSuggestions = <String>{
+          ...standardSuggestions,
+          ...crossLanguageSuggestions
+        }.toList();
+
         _showSuggestions = value.isNotEmpty && _filteredSuggestions.isNotEmpty;
       }
     });
+
+    // Call onSearchChanged if provided
+    widget.onSearchChanged?.call(value);
   }
 
   void _onSubmitted(String value) {
@@ -121,11 +138,11 @@ class _SearchBarState extends State<SearchBar> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Color.fromRGBO(0, 0, 0, 0.05),
                   blurRadius: 4,
-                  offset: const Offset(0, 2),
+                  offset: Offset(0, 2),
                 ),
               ],
             ),
