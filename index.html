@@ -1,1 +1,458 @@
-<!DOCTYPE html><html><head><title>Swap&Shop</title></head><body><h1>Swap&Shop - Visuelle Startseite</h1><p>Neue Landingpage wird erstellt...</p></body></html>
+<!DOCTYPE html>
+<!-- DEPLOY TEST: Landingpage Copy Refresh (DE) - Visuelle Startseite mit Hero + Features -->
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swap&Shop – Tauschen, Verschenken & Verkaufen mit Swipe-Spaß</title>
+    <meta name="description" content="Finde lokale Matches per Swipe, gründe Gruppen, starte deinen Store. Suche statt Scrollen – Swap&Shop macht Tauschen, Verschenken & Verkaufen einfach.">
+    <meta name="keywords" content="tauschen, verschenken, verkaufen, swipe, lokale gruppen, stores, suche, community">
+    <meta name="author" content="Swap&Shop">
+    <meta property="og:title" content="Swap&Shop – Tauschen, Verschenken & Verkaufen mit Swipe-Spaß">
+    <meta property="og:description" content="Finde lokale Matches per Swipe, gründe Gruppen, starte deinen Store. Suche statt Scrollen – Swap&Shop macht Tauschen, Verschenken & Verkaufen einfach.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://swapnshop.app">
+    <meta property="og:image" content="https://swapnshop.app/icon/icon.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Swap&Shop – Tauschen, Verschenken & Verkaufen mit Swipe-Spaß">
+    <meta name="twitter:description" content="Finde lokale Matches per Swipe, gründe Gruppen, starte deinen Store. Suche statt Scrollen – Swap&Shop macht Tauschen, Verschenken & Verkaufen einfach.">
+    <meta name="twitter:image" content="https://swapnshop.app/icon/icon.png">
+    <link rel="icon" type="image/png" href="icon/icon.png">
+    <link rel="apple-touch-icon" href="icon/icon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+            color: white;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: white;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: #667eea;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-tagline {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+
+        /* Download Section */
+        .download-section {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 36px;
+            background: white;
+            color: #333;
+            text-decoration: none;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .coming-soon {
+            color: white;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: white;
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin-bottom: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: #f8f9fa;
+            border-radius: 16px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .feature-text {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* App Mockup Section */
+        .mockup-section {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .mockup-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .mockup {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .mockup-placeholder {
+            width: 200px;
+            height: 400px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: #2c3e50;
+            color: white;
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            border: 2px solid #667eea;
+        }
+
+        .cta-btn.secondary:hover {
+            background: #667eea;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 24px 24px 0 0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.4rem;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mockup-container {
+                flex-direction: column;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            .features-section,
+            .mockup-section,
+            .cta-section {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+            
+            .logo {
+                width: 100px;
+                height: 100px;
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="logo">🔄</div>
+            <h1>Swap&Shop</h1>
+            <p class="hero-tagline">Tauschen, Verschenken & Verkaufen mit Swipe-Spaß</p>
+            <p class="hero-subtitle">Finde lokale Matches, gründe Gruppen, starte deinen Store</p>
+        </section>
+
+        <!-- Download Section -->
+        <section class="download-section">
+            <div class="download-buttons">
+                <a href="https://apps.apple.com/app/swapnshop/id123456789" class="download-btn" target="_blank" rel="noopener">
+                    📱 App Store
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.ramonbieri.swapnshop" class="download-btn" target="_blank" rel="noopener">
+                    🤖 Google Play
+                </a>
+            </div>
+            <p class="coming-soon">Coming Soon - Bald verfügbar!</p>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px; color: #333;">Was macht Swap&Shop einzigartig?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3 class="feature-title">Swipe-Spaß</h3>
+                    <p class="feature-text">Entdecke Artikel per Swipe – Matches entstehen in Sekunden</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="feature-title">Smarte Suche</h3>
+                    <p class="feature-text">Finde genau was du suchst – kein endloses Scrollen</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏘️</div>
+                    <h3 class="feature-title">Lokale Gruppen</h3>
+                    <p class="feature-text">Gründe Communities in deinem Ort und vernetze dich</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏪</div>
+                    <h3 class="feature-title">Eigener Store</h3>
+                    <p class="feature-text">Starte deinen Shop – privat oder professionell</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Mockup Section -->
+        <section class="mockup-section">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; font-weight: 700;">So sieht Swap&Shop aus</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9;">Entdecke die App in Aktion</p>
+            <div class="mockup-container">
+                <div class="mockup">
+                    <div class="mockup-placeholder">📱</div>
+                    <p style="margin-top: 15px; font-weight: 600;">Swipe & Match</p>
+                </div>
+                <div class="mockup">
+                    <div class="mockup-placeholder">🔍</div>
+                    <p style="margin-top: 15px; font-weight: 600;">Suche & Finde</p>
+                </div>
+                <div class="mockup">
+                    <div class="mockup-placeholder">🏘️</div>
+                    <p style="margin-top: 15px; font-weight: 600;">Gruppen & Community</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2 class="cta-title">Wir suchen Verstärkung!</h2>
+            <p class="cta-text">Hilf uns dabei, Swap&Shop noch besser zu machen</p>
+            <div class="cta-buttons">
+                <a href="mailto:info@swapnshop.app?subject=Tester:in werden" class="cta-btn">
+                    🧪 Tester:in werden
+                </a>
+                <a href="mailto:info@swapnshop.app?subject=CTO Position" class="cta-btn secondary">
+                    💼 CTO werden
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="privacy.html">Datenschutz</a>
+            <a href="terms.html">AGB</a>
+            <a href="support.html">Support</a>
+            <a href="about.html">Über uns</a>
+            <a href="mailto:info@swapnshop.app">Kontakt</a>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Swap&Shop. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+</body>
+</html>
