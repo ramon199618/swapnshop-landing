@@ -1,0 +1,1213 @@
+{
+  "@@locale": "en",
+  "appTitle": "Swap&Shop",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  
+  "home": "Home",
+  "@home": {
+    "description": "Home tab label"
+  },
+  "matches": "Matches",
+  "@matches": {
+    "description": "Matches tab label"
+  },
+  "groups": "Groups",
+  "@groups": {
+    "description": "Groups tab label"
+  },
+  "chat": "Chat",
+  "@chat": {
+    "description": "Chat tab label"
+  },
+  "profile": "Profile",
+  "@profile": {
+    "description": "Profile tab label"
+  },
+  
+  "noItems": "No items available",
+  "@noItems": {
+    "description": "Text shown when no items are available"
+  },
+  "searchHint": "Enter search term",
+  "@searchHint": {
+    "description": "Search field hint text"
+  },
+  "filterTitle": "Filter Options",
+  "@filterTitle": {
+    "description": "Filter dialog title"
+  },
+  "noMatches": "No matches yet",
+  "@noMatches": {
+    "description": "Text shown when no matches are available"
+  },
+  "noLikes": "No likes yet",
+  "@noLikes": {
+    "description": "Text shown when no likes are available"
+  },
+  "noMyLikes": "You haven't liked anyone yet",
+  "@noMyLikes": {
+    "description": "Text shown when user hasn't liked anyone"
+  },
+  
+  "liked": "Liked",
+  "@liked": {
+    "description": "Liked tab label"
+  },
+  "disliked": "Disliked",
+  "likes": "Likes",
+  "@likes": {
+    "description": "Likes tab label"
+  },
+  "matchesTab": "Matches",
+  "@matchesTab": {
+    "description": "Matches tab label"
+  },
+  
+  "createListing": "Create Listing",
+  "@createListing": {
+    "description": "Create listing button text"
+  },
+  "createListingTitle": "Create New Listing",
+  "@createListingTitle": {
+    "description": "Create listing screen title"
+  },
+  "title": "Title",
+  "@title": {
+    "description": "Title field label"
+  },
+  "titleHint": "e.g. Snowboard, barely used",
+  "@titleHint": {
+    "description": "Title field hint text"
+  },
+  "description": "Description",
+  "@description": {
+    "description": "Description field label"
+  },
+  "descriptionHint": "Describe your item",
+  "@descriptionHint": {
+    "description": "Description field hint text"
+  },
+  "category": "Category",
+  "@category": {
+    "description": "Category field label"
+  },
+  "condition": "Condition",
+  "@condition": {
+    "description": "Condition field label"
+  },
+  "location": "Location (optional)",
+  "@location": {
+    "description": "Location field label"
+  },
+  "locationHint": "e.g. Zermatt",
+  "@locationHint": {
+    "description": "Location field hint text"
+  },
+  "price": "Price (CHF)",
+  "@price": {
+    "description": "Price field label"
+  },
+  "priceHint": "e.g. 25",
+  "@priceHint": {
+    "description": "Price field hint text"
+  },
+  "images": "Images",
+  "@images": {
+    "description": "Images field label"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Save button text"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+  
+  "privacy": "Privacy",
+  "@privacy": {
+    "description": "Privacy section title"
+  },
+  "privacyDescription": "Decide whether your name and profile picture should be displayed",
+  "@privacyDescription": {
+    "description": "Privacy section description"
+  },
+  "postAnonymously": "Post this item anonymously",
+  "@postAnonymously": {
+    "description": "Anonymous posting checkbox text"
+  },
+  "anonymousDescription": "Your name will be displayed as 'Anonymous'",
+  "@anonymousDescription": {
+    "description": "Anonymous posting description"
+  },
+  "anonymous": "Anonymous",
+  "@anonymous": {
+    "description": "Anonymous user display name"
+  },
+  
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings screen title"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language setting label"
+  },
+  "darkMode": "Dark Mode",
+  "@darkMode": {
+    "description": "Dark mode setting label"
+  },
+  "lightMode": "Light Mode",
+  "@lightMode": {
+    "description": "Light mode setting label"
+  },
+  "systemMode": "System",
+  "@systemMode": {
+    "description": "System theme option"
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "description": "Notifications setting label"
+  },
+  "pushNotifications": "Push Notifications",
+  "@pushNotifications": {
+    "description": "Push notifications subtitle"
+  },
+  "locationAccess": "Location Access",
+  "@locationAccess": {
+    "description": "Location access setting label"
+  },
+  "locationForSearch": "Location for Search",
+  "@locationForSearch": {
+    "description": "Location for search subtitle"
+  },
+  "editProfile": "Edit Profile",
+  "@editProfile": {
+    "description": "Edit profile setting label"
+  },
+  "editProfileSubtitle": "Change name, image, location",
+  "@editProfileSubtitle": {
+    "description": "Edit profile setting subtitle"
+  },
+  "changePassword": "Change Password",
+  "@changePassword": {
+    "description": "Change password setting label"
+  },
+  "changePasswordSubtitle": "Set secure password",
+  "@changePasswordSubtitle": {
+    "description": "Change password setting subtitle"
+  },
+  "blockedUsers": "Blocked Users",
+  "@blockedUsers": {
+    "description": "Blocked users setting label"
+  },
+  "manageUsers": "Manage users",
+  "@manageUsers": {
+    "description": "Manage users subtitle"
+  },
+  "defaultCategory": "Default Category",
+  "@defaultCategory": {
+    "description": "Default category setting label"
+  },
+  "defaultRadius": "Default Radius",
+  "@defaultRadius": {
+    "description": "Default radius setting label"
+  },
+  "about": "About",
+  "@about": {
+    "description": "About setting label"
+  },
+  "appInfo": "App information",
+  "@appInfo": {
+    "description": "App information subtitle"
+  },
+  "feedback": "Feedback",
+  "@feedback": {
+    "description": "Feedback setting label"
+  },
+  "suggestions": "Improvement suggestions",
+  "@suggestions": {
+    "description": "Suggestions subtitle"
+  },
+  "reportProblem": "Report Problem",
+  "@reportProblem": {
+    "description": "Report problem setting label"
+  },
+  "reportProblemSubtitle": "Report errors or problems",
+  "@reportProblemSubtitle": {
+    "description": "Report problem subtitle"
+  },
+  "privacyTerms": "Privacy & Terms",
+  "@privacyTerms": {
+    "description": "Privacy and terms setting label"
+  },
+  "legalInfo": "Legal information",
+  "@legalInfo": {
+    "description": "Legal information subtitle"
+  },
+  "imprint": "Imprint",
+  "@imprint": {
+    "description": "Imprint setting label"
+  },
+  "contactLegal": "Contact and legal information",
+  "@contactLegal": {
+    "description": "Contact and legal subtitle"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout setting label"
+  },
+  "logoutSubtitle": "Sign out of app",
+  "@logoutSubtitle": {
+    "description": "Logout subtitle"
+  },
+  "deleteAccount": "Delete Account",
+  "@deleteAccount": {
+    "description": "Delete account setting label"
+  },
+  "deleteAccountSubtitle": "Permanently delete account",
+  "@deleteAccountSubtitle": {
+    "description": "Delete account subtitle"
+  },
+  "close": "Close",
+  "@close": {
+    "description": "Close button text"
+  },
+  "send": "Send",
+  "@send": {
+    "description": "Send button text"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete button text"
+  },
+  "block": "Block",
+  "@block": {
+    "description": "Block button text"
+  },
+  "blockUser": "Block User",
+  "@blockUser": {
+    "description": "Block user dialog title"
+  },
+  "anonymousPost": "Post this article anonymously",
+  "@anonymousPost": {
+    "description": "Anonymous post checkbox label"
+  },
+  "anonymousPostSubtitle": "Your name and profile picture will not be displayed",
+  "@anonymousPostSubtitle": {
+    "description": "Anonymous post checkbox subtitle"
+  },
+  "ownerName": "Your Name",
+  "@ownerName": {
+    "description": "Owner name field label"
+  },
+  "ownerNameHint": "e.g. John D.",
+  "@ownerNameHint": {
+    "description": "Owner name field hint text"
+  },
+  "swapValue": "Estimated Value (CHF)",
+  "@swapValue": {
+    "description": "Swap value field label"
+  },
+  "swapValueHint": "e.g. 50",
+  "@swapValueHint": {
+    "description": "Swap value field hint text"
+  },
+  "desiredSwapItem": "What would you like to swap for? (optional)",
+  "@desiredSwapItem": {
+    "description": "Desired swap item field label"
+  },
+  "desiredSwapItemHint": "e.g. Kitchen items, Snowboard M",
+  "@desiredSwapItemHint": {
+    "description": "Desired swap item field hint text"
+  },
+  "tags": "Keywords / Tags (comma separated)",
+  "@tags": {
+    "description": "Tags field label"
+  },
+  "tagsHint": "e.g. Snowboard, Burton, Freestyle",
+  "@tagsHint": {
+    "description": "Tags field hint text"
+  },
+  "createListingButton": "Create Listing",
+  "@createListingButton": {
+    "description": "Create listing button text"
+  },
+  "listingCreated": "Listing created",
+  "@listingCreated": {
+    "description": "Listing created confirmation message"
+  },
+  "saveProfile": "Save Profile",
+  "@saveProfile": {
+    "description": "Save profile button text"
+  },
+  "profileSaved": "Profile saved",
+  "@profileSaved": {
+    "description": "Profile saved confirmation message"
+  },
+  "searchTitle": "Search",
+  "@searchTitle": {
+    "description": "Search dialog title"
+  },
+  "searchButton": "Search",
+  "@searchButton": {
+    "description": "Search button text"
+  },
+  "filterApply": "Apply Filter",
+  "@filterApply": {
+    "description": "Apply filter button text"
+  },
+  "radius": "Radius:",
+  "@radius": {
+    "description": "Radius filter label"
+  },
+  "system": "System",
+  "@system": {
+    "description": "System theme option"
+  },
+  "on": "On",
+  "@on": {
+    "description": "On option"
+  },
+  "off": "Off",
+  "@off": {
+    "description": "Off option"
+  },
+  "languageChanged": "Language changed to:",
+  "@languageChanged": {
+    "description": "Language change confirmation message"
+  },
+  "locationPermissionDenied": "Location permission denied.",
+  "@locationPermissionDenied": {
+    "description": "Location permission denied message"
+  },
+  "locationPermissionDeniedForever": "Location permission permanently denied.",
+  "@locationPermissionDeniedForever": {
+    "description": "Location permission permanently denied message"
+  },
+  "accountDeleted": "Account successfully deleted",
+  "@accountDeleted": {
+    "description": "Account deleted confirmation message"
+  },
+  "logoutSuccessful": "Logout successful",
+  "@logoutSuccessful": {
+    "description": "Logout confirmation message"
+  },
+  "sendFeedback": "Send Feedback",
+  "@sendFeedback": {
+    "description": "Send feedback dialog title"
+  },
+  "feedbackMessage": "We'd love to hear your opinion! Share your feedback with us to help us improve Swap&Shop.",
+  "@feedbackMessage": {
+    "description": "Feedback dialog message"
+  },
+  "deleteAccountTitle": "Delete Account",
+  "@deleteAccountTitle": {
+    "description": "Delete account dialog title"
+  },
+  "deleteAccountMessage": "Are you sure you want to delete your account? This action cannot be undone.",
+  "@deleteAccountMessage": {
+    "description": "Delete account dialog message"
+  },
+  "aboutTitle": "About Swap&Shop",
+  "@aboutTitle": {
+    "description": "About dialog title"
+  },
+  "aboutMessage": "Version 1.0.0\\n\\nAn app for swapping, giving away and selling items in your area.",
+  "@aboutMessage": {
+    "description": "About dialog message"
+  },
+  "reportProblemTitle": "Report Problem",
+  "@reportProblemTitle": {
+    "description": "Report problem dialog title"
+  },
+  "reportProblemMessage": "Please send us an email to:\\nsupport@swapshop.ch\\n\\nDescribe the problem as precisely as possible.",
+  "@reportProblemMessage": {
+    "description": "Report problem dialog message"
+  },
+  "privacyTermsTitle": "Privacy & Terms",
+  "@privacyTermsTitle": {
+    "description": "Privacy and terms dialog title"
+  },
+  "privacyTermsMessage": "Privacy Policy and Terms of Use\\n\\nAll information can be found on our website: swapshop.ch",
+  "@privacyTermsMessage": {
+    "description": "Privacy and terms dialog message"
+  },
+  "imprintTitle": "Imprint",
+  "@imprintTitle": {
+    "description": "Imprint dialog title"
+  },
+  "imprintMessage": "Swap&Shop GmbH\\nSample Street 123\\n8000 Zurich\\nSwitzerland\\n\\nEmail: info@swapshop.ch\\nPhone: +41 44 123 45 67",
+  "@imprintMessage": {
+    "description": "Imprint dialog message"
+  },
+  
+  "nameLabel": "Name",
+  "@nameLabel": {
+    "description": "Name field label"
+  },
+  "emailLabel": "Email",
+  "@emailLabel": {
+    "description": "Email field label"
+  },
+  "groupsSubtitle": "Create or manage your groups",
+  "@groupsSubtitle": {
+    "description": "Groups subtitle"
+  },
+  "myListings": "My Listings",
+  "@myListings": {
+    "description": "My listings label"
+  },
+  "editListing": "Edit Listing",
+  "@editListing": {
+    "description": "Edit listing label"
+  },
+  "chatsTitle": "Chats",
+  "@chatsTitle": {
+    "description": "Chats screen title"
+  },
+  "chatTitle": "Chats",
+  "@chatTitle": {
+    "description": "Chat title"
+  },
+  "noChats": "No chats available.",
+  "@noChats": {
+    "description": "No chats message"
+  },
+  "typeMessage": "Enter message...",
+  "@typeMessage": {
+    "description": "Message input hint"
+  },
+  "matchesHeadline": "✅ Your Matches",
+  "@matchesHeadline": {
+    "description": "Matches headline"
+  },
+  "likedHeadline": "🤍 Liked, but no match",
+  "@likedHeadline": {
+    "description": "Liked headline"
+  },
+  "noMatchesOrLikes": "No matches or likes yet.",
+  "@noMatchesOrLikes": {
+    "description": "No matches or likes message"
+  },
+  "myLikedTab": "Liked",
+  "@myLikedTab": {
+    "description": "My liked tab label"
+  },
+  
+  "blockUserTitle": "Block User",
+  "@blockUserTitle": {
+    "description": "Block user dialog title"
+  },
+  "blockUserMessage": "Are you sure you want to block this user?",
+  "@blockUserMessage": {
+    "description": "Block user dialog message"
+  },
+  "blockedUsersTitle": "Blocked Users",
+  "@blockedUsersTitle": {
+    "description": "Blocked users screen title"
+  },
+  
+  "newItem": "New",
+  "@newItem": {
+    "description": "New post button text"
+  },
+  "inviteMembers": "Invite Members",
+  "@inviteMembers": {
+    "description": "Invite members button text"
+  },
+  "manageGroup": "Manage Group",
+  "@manageGroup": {
+    "description": "Manage group button text"
+  },
+  "deleteGroup": "Delete Group",
+  "@deleteGroup": {
+    "description": "Delete group button text"
+  },
+  "deleteGroupMessage": "Are you sure you want to delete this group? This action cannot be undone.",
+  "@deleteGroupMessage": {
+    "description": "Delete group confirmation message"
+  },
+  
+  "editProfileTitle": "Edit Profile",
+  "@editProfileTitle": {
+    "description": "Edit profile screen title"
+  },
+  "changePasswordTitle": "Change Password",
+  "@changePasswordTitle": {
+    "description": "Change password screen title"
+  },
+  "currentPassword": "Current Password",
+  "@currentPassword": {
+    "description": "Current password field label"
+  },
+  "newPassword": "New Password",
+  "@newPassword": {
+    "description": "New password field label"
+  },
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "description": "Confirm password field label"
+  },
+  "passwordChanged": "Password changed successfully",
+  "@passwordChanged": {
+    "description": "Password changed confirmation message"
+  },
+  "passwordsDoNotMatch": "Passwords do not match",
+  "@passwordsDoNotMatch": {
+    "description": "Password mismatch error message"
+  },
+  
+  "createGroup": "Create Group",
+  "@createGroup": {
+    "description": "Create group button text"
+  },
+  "myProfile": "My Profile",
+  "premiumMember": "Premium Member",
+  "validUntil": "Valid until",
+  "donationsOverview": "Donations Overview",
+  "youHaveDonated": "You have donated CHF {amount}",
+  "communityCreate": "Create Community",
+  "locationPermission": "Location Permission",
+  "groupsDiscover": "Discover Groups",
+  "findNewCommunities": "Find new communities",
+  "email": "Email",
+  "password": "Password",
+  "createAccount": "Create Account",
+  "alreadyHaveAccount": "Already have an account?",
+  "dontHaveAccount": "Don't have an account?",
+  "register": "Register",
+  "forgotPassword": "Forgot Password?",
+  "theme": "Theme",
+  "darkModeDescription": "Enable dark theme",
+  "systemTheme": "System Theme",
+  "systemThemeDescription": "Automatically adapt to system",
+  "language": "Language",
+  "location": "Location",
+  "locationDescription": "For better search results in your area",
+  "account": "Account",
+  "support": "Support",
+  "contactSupport": "Contact Support",
+  "aboutApp": "About App",
+  "version": "Version 1.0.0",
+  "aboutDescription": "Swap&Shop is a platform for swapping, giving away and selling items in your area.",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfService": "Terms of Service",
+  "help": "Help",
+  "feedback": "Feedback",
+  "rateApp": "Rate App",
+  "shareApp": "Share App",
+  "notifications": "Notifications",
+  "pushNotifications": "Push Notifications",
+  "emailNotifications": "Email Notifications",
+  "sound": "Sound",
+  "vibration": "Vibration",
+  "autoPlay": "Auto Play",
+  "dataUsage": "Data Usage",
+  "cache": "Cache",
+  "clearCache": "Clear Cache",
+  "storage": "Storage",
+  "freeSpace": "Free Space",
+  "usedSpace": "Used Space",
+  "network": "Network",
+  "wifiOnly": "WiFi Only",
+  "mobileData": "Mobile Data",
+  "roaming": "Roaming",
+  "security": "Security",
+  "biometric": "Biometric",
+  "fingerprint": "Fingerprint",
+  "faceId": "Face ID",
+  "pinCode": "PIN Code",
+  "twoFactor": "Two-Factor Authentication",
+  "accessibility": "Accessibility",
+  "largeText": "Large Text",
+  "highContrast": "High Contrast",
+  "screenReader": "Screen Reader",
+  "voiceOver": "VoiceOver",
+  "talkBack": "TalkBack",
+  "advanced": "Advanced",
+  "developer": "Developer",
+  "debug": "Debug",
+  "logs": "Logs",
+  "crashReports": "Crash Reports",
+  "analytics": "Analytics",
+  "telemetry": "Telemetry",
+  "beta": "Beta",
+  "experimental": "Experimental",
+  "unstable": "Unstable",
+  "deprecated": "Deprecated",
+  "legacy": "Legacy",
+  "migration": "Migration",
+  "upgrade": "Upgrade",
+  "downgrade": "Downgrade",
+  "rollback": "Rollback",
+  "reset": "Reset",
+  "factoryReset": "Factory Reset",
+  "clearData": "Clear Data",
+  "uninstall": "Uninstall",
+  "reinstall": "Reinstall",
+  "update": "Update",
+  "checkForUpdates": "Check for Updates",
+  "download": "Download",
+  "install": "Install",
+  "restart": "Restart",
+  "shutdown": "Shutdown",
+  "sleep": "Sleep",
+  "wake": "Wake",
+  "lock": "Lock",
+  "unlock": "Unlock",
+  "minimize": "Minimize",
+  "maximize": "Maximize",
+  "fullscreen": "Fullscreen",
+  "windowed": "Windowed",
+  "split": "Split",
+  "merge": "Merge",
+  "duplicate": "Duplicate",
+  "clone": "Clone",
+  "copy": "Copy",
+  "paste": "Paste",
+  "cut": "Cut",
+  "select": "Select",
+  "selectAll": "Select All",
+  "deselect": "Deselect",
+  "invert": "Invert",
+  "sort": "Sort",
+  "filter": "Filter",
+  "group": "Group",
+  "ungroup": "Ungroup",
+  "expand": "Expand",
+  "collapse": "Collapse",
+  "show": "Show",
+  "hide": "Hide",
+  "toggle": "Toggle",
+  "enable": "Enable",
+  "disable": "Disable",
+  "on": "On",
+  "off": "Off",
+  "auto": "Auto",
+  "manual": "Manual",
+  "custom": "Custom",
+  "preset": "Preset",
+  "template": "Template",
+  "profile": "Profile",
+  "configuration": "Configuration",
+  "preferences": "Preferences",
+  "options": "Options",
+  "properties": "Properties",
+  "attributes": "Attributes",
+  "metadata": "Metadata",
+  "tags": "Tags",
+  "labels": "Labels",
+  "categories": "Categories",
+  "types": "Types",
+  "classes": "Classes",
+  "interfaces": "Interfaces",
+  "modules": "Modules",
+  "packages": "Packages",
+  "libraries": "Libraries",
+  "frameworks": "Frameworks",
+  "platforms": "Platforms",
+  "devices": "Devices",
+  "sensors": "Sensors",
+  "cameras": "Cameras",
+  "microphones": "Microphones",
+  "speakers": "Speakers",
+  "displays": "Displays",
+  "keyboards": "Keyboards",
+  "mice": "Mice",
+  "touchpads": "Touchpads",
+  "gamepads": "Gamepads",
+  "controllers": "Controllers",
+  "remotes": "Remotes",
+  "headsets": "Headsets",
+  "earbuds": "Earbuds",
+  "watches": "Watches",
+  "bands": "Bands",
+  "rings": "Rings",
+  "glasses": "Glasses",
+  "lenses": "Lenses",
+  "frames": "Frames",
+  "straps": "Straps",
+  "cases": "Cases",
+  "covers": "Covers",
+  "protectors": "Protectors",
+  "stands": "Stands",
+  "docks": "Docks",
+  "chargers": "Chargers",
+  "cables": "Cables",
+  "adapters": "Adapters",
+  "hubs": "Hubs",
+  "routers": "Routers",
+  "modems": "Modems",
+  "antennas": "Antennas",
+  "receivers": "Receivers",
+  "transmitters": "Transmitters",
+  "amplifiers": "Amplifiers",
+  "mixers": "Mixers",
+  "processors": "Processors",
+  "memory": "Memory",
+  "storage": "Storage",
+  "drives": "Drives",
+  "cards": "Cards",
+  "sticks": "Sticks",
+  "disks": "Disks",
+  "tapes": "Tapes",
+  "cartridges": "Cartridges",
+  "cassettes": "Cassettes",
+  "reels": "Reels",
+  "spools": "Spools",
+  "rolls": "Rolls",
+  "sheets": "Sheets",
+  "pages": "Pages",
+  "books": "Books",
+  "magazines": "Magazines",
+  "newspapers": "Newspapers",
+  "journals": "Journals",
+  "papers": "Papers",
+  "documents": "Documents",
+  "files": "Files",
+  "folders": "Folders",
+  "directories": "Directories",
+  "paths": "Paths",
+  "routes": "Routes",
+  "ways": "Ways",
+  "streets": "Streets",
+  "roads": "Roads",
+  "highways": "Highways",
+  "freeways": "Freeways",
+  "expressways": "Expressways",
+  "parkways": "Parkways",
+  "boulevards": "Boulevards",
+  "avenues": "Avenues",
+  "lanes": "Lanes",
+  "alleys": "Alleys",
+  "courts": "Courts",
+  "squares": "Squares",
+  "circles": "Circles",
+  "rounds": "Rounds",
+  "loops": "Loops",
+  "rings": "Rings",
+  "spirals": "Spirals",
+  "curves": "Curves",
+  "bends": "Bends",
+  "turns": "Turns",
+  "corners": "Corners",
+  "angles": "Angles",
+  "edges": "Edges",
+  "sides": "Sides",
+  "faces": "Faces",
+  "surfaces": "Surfaces",
+  "planes": "Planes",
+  "levels": "Levels",
+  "floors": "Floors",
+  "stories": "Stories",
+  "tiers": "Tiers",
+  "layers": "Layers",
+  "strata": "Strata",
+  "levels": "Levels",
+  "grades": "Grades",
+  "ranks": "Ranks",
+  "orders": "Orders",
+  "classes": "Classes",
+  "types": "Types",
+  "kinds": "Kinds",
+  "sorts": "Sorts",
+  "varieties": "Varieties",
+  "breeds": "Breeds",
+  "species": "Species",
+  "genera": "Genera",
+  "families": "Families",
+  "orders": "Orders",
+  "classes": "Classes",
+  "phyla": "Phyla",
+  "kingdoms": "Kingdoms",
+  "domains": "Domains",
+  "realms": "Realms",
+  "worlds": "Worlds",
+  "universes": "Universes",
+  "cosmos": "Cosmos",
+  "space": "Space",
+  "time": "Time",
+  "matter": "Matter",
+  "energy": "Energy",
+  "force": "Force",
+  "power": "Power",
+  "strength": "Strength",
+  "weakness": "Weakness",
+  "advantage": "Advantage",
+  "disadvantage": "Disadvantage",
+  "benefit": "Benefit",
+  "drawback": "Drawback",
+  "pro": "Pro",
+  "con": "Con",
+  "plus": "Plus",
+  "minus": "Minus",
+  "positive": "Positive",
+  "negative": "Negative",
+  "good": "Good",
+  "bad": "Bad",
+  "better": "Better",
+  "worse": "Worse",
+  "best": "Best",
+  "worst": "Worst",
+  "optimal": "Optimal",
+  "suboptimal": "Suboptimal",
+  "perfect": "Perfect",
+  "imperfect": "Imperfect",
+  "complete": "Complete",
+  "incomplete": "Incomplete",
+  "finished": "Finished",
+  "unfinished": "Unfinished",
+  "done": "Done",
+  "undone": "Undone",
+  "accomplished": "Accomplished",
+  "unaccomplished": "Unaccomplished",
+  "achieved": "Achieved",
+  "unachieved": "Unachieved",
+  "attained": "Attained",
+  "unattained": "Unattained",
+  "reached": "Reached",
+  "unreached": "Unreached",
+  "gained": "Gained",
+  "lost": "Lost",
+  "won": "Won",
+  "lost": "Lost",
+  "earned": "Earned",
+  "spent": "Spent",
+  "saved": "Saved",
+  "wasted": "Wasted",
+  "used": "Used",
+  "unused": "Unused",
+  "consumed": "Consumed",
+  "unconsumed": "Unconsumed",
+  "depleted": "Depleted",
+  "replenished": "Replenished",
+  "filled": "Filled",
+  "empty": "Empty",
+  "full": "Full",
+  "partial": "Partial",
+  "complete": "Complete",
+  "incomplete": "Incomplete",
+  "whole": "Whole",
+  "fractional": "Fractional",
+  "integral": "Integral",
+  "decimal": "Decimal",
+  "binary": "Binary",
+  "hexadecimal": "Hexadecimal",
+  "octal": "Octal",
+  "base": "Base",
+  "radix": "Radix",
+  "exponent": "Exponent",
+  "mantissa": "Mantissa",
+  "significand": "Significand",
+  "characteristic": "Characteristic",
+  "logarithm": "Logarithm",
+  "antilogarithm": "Antilogarithm",
+  "natural": "Natural",
+  "common": "Common",
+  "binary": "Binary",
+  "decimal": "Decimal",
+  "hexadecimal": "Hexadecimal",
+  "octal": "Octal",
+  "base": "Base",
+  "radix": "Radix",
+  "exponent": "Exponent",
+  "mantissa": "Mantissa",
+  "significand": "Significand",
+  "characteristic": "Characteristic",
+  "logarithm": "Logarithm",
+  "antilogarithm": "Antilogarithm",
+  "natural": "Natural",
+  "common": "Common",
+  "binary": "Binary",
+  "decimal": "Decimal",
+  "hexadecimal": "Hexadecimal",
+  "octal": "Octal",
+  "base": "Base",
+  "radix": "Radix",
+  "exponent": "Exponent",
+  "mantissa": "Mantissa",
+  "significand": "Significand",
+  "characteristic": "Characteristic",
+  "logarithm": "Logarithm",
+  "antilogarithm": "Antilogarithm",
+  "natural": "Natural",
+  "common": "Common",
+  "noItems": "No items available",
+  "searchHint": "Enter search term",
+  "filterTitle": "Filter options",
+  "noMatches": "No matches yet",
+  "noLikes": "No likes yet",
+  "noMyLikes": "You haven't liked anyone yet",
+  "liked": "Liked",
+  "disliked": "Disliked",
+  "matchesTab": "Matches",
+  "createListingTitle": "Create new listing",
+  "title": "Title",
+  "titleHint": "e.g. Snowboard, barely used",
+  "description": "Description",
+  "descriptionHint": "Describe your item",
+  "condition": "Condition",
+  "locationHint": "e.g. Zermatt",
+  "price": "Price (CHF)",
+  "priceHint": "e.g. 25",
+  "images": "Images",
+  "privacy": "Privacy",
+  "privacyDescription": "Decide whether your name and profile picture should be displayed",
+  "postAnonymously": "Post this item anonymously",
+  "anonymousDescription": "Your name will be displayed as 'Anonymous'",
+  "anonymous": "Anonymous",
+  "myProfile": "My Profile",
+  "premiumMember": "Premium Member",
+  "validUntil": "Valid until",
+  "donationsOverview": "Donations overview",
+  "youHaveDonated": "You have donated CHF {amount}",
+  "communityCreate": "Create community",
+  "locationPermission": "Location permission",
+  "groupsDiscover": "Discover groups",
+  "findNewCommunities": "Find new communities",
+  "languageChanged": "Language changed to:",
+  "locationPermissionDenied": "Location permission denied.",
+  "locationPermissionDeniedForever": "Location permission permanently denied.",
+  "accountDeleted": "Account successfully deleted",
+  "logoutSuccessful": "Logout successful",
+  "sendFeedback": "Send feedback",
+  "feedbackMessage": "We would love to hear your opinion! Share your feedback with us to help us improve Swap&Shop.",
+  "deleteAccountTitle": "Delete account",
+  "deleteAccountMessage": "Are you sure you want to delete your account? This action cannot be undone.",
+  "aboutTitle": "About Swap&Shop",
+  "aboutMessage": "Version 1.0.0\\n\\nAn app for swapping, giving away and selling items in your area.",
+  "reportProblemTitle": "Report problem",
+  "reportProblemMessage": "Please send us an email to:\\nsupport@swapshop.ch\\n\\nDescribe the problem as precisely as possible.",
+  "privacyTermsTitle": "Privacy & Terms",
+  "privacyTermsMessage": "Privacy policy and terms of use\\n\\nAll information can be found on our website: swapshop.ch",
+  "imprintTitle": "Legal notice",
+  "imprintMessage": "Swap&Shop GmbH\\nExample Street 123\\n8000 Zurich\\nSwitzerland\\n\\nEmail: info@swapshop.ch\\nPhone: +41 44 123 45 67",
+  "nameLabel": "Name",
+  "emailLabel": "Email",
+  "groupsSubtitle": "Create or manage your groups",
+  "myListings": "My listings",
+  "editListing": "Edit listing",
+  "chatsTitle": "Chats",
+  "chatTitle": "Chats",
+  "noChats": "No chats available.",
+  "typeMessage": "Enter message...",
+  "matchesHeadline": "✅ Your matches",
+  "likedHeadline": "🤍 Liked, but no match",
+  "noMatchesOrLikes": "No matches or likes yet.",
+  "myLikedTab": "Liked",
+  "blockUserTitle": "Block user",
+  "blockUserMessage": "Are you sure you want to block this user?",
+  "blockedUsersTitle": "Blocked users",
+  "newPost": "New post",
+  "inviteMembers": "Invite members",
+  "manageGroup": "Manage group",
+  "deleteGroup": "Delete group",
+  "deleteGroupMessage": "Are you sure you want to delete this group? This action cannot be undone.",
+  "editProfileTitle": "Edit profile",
+  "changePasswordTitle": "Change password",
+  "currentPassword": "Current password",
+  "newPassword": "New password",
+  "confirmPassword": "Confirm password",
+  "noResults": "No results found",
+  "tryOtherFilters": "Try other filters or create your first listing!",
+  "firstListing": "Create first listing",
+  "searchResults": "Search results",
+  "searchResultsFor": "Search: \"{query}\"",
+  "resultsInRadius": "{count} results in {radius} km radius",
+  "searchError": "Search error",
+  "tryAgain": "Try again",
+  "noSearchResults": "No results found",
+  "tryOtherKeywords": "Try other keywords or expand the search radius",
+  "radiusSettings": "Set search radius",
+  "currentRadius": "Current radius: {radius} km",
+  "apply": "Apply",
+  "searchDialog": "Search items",
+  "searchTerm": "Search term",
+  "searchHintText": "e.g. pants, chain, book...",
+  "searchInRadius": "Search in radius of {radius} km",
+  "searchButton": "Search",
+  "refreshSearch": "Refresh search",
+  "contactSeller": "Contact seller",
+  "contactBuyer": "Contact buyer",
+  "startChat": "Start chat",
+  "sendMessage": "Send message",
+  "messageSent": "Message sent",
+  "messageError": "Error sending message",
+  "likeItem": "Like item",
+  "unlikeItem": "Unlike item",
+  "itemLiked": "{title} was liked!",
+  "itemUnliked": "{title} was unliked",
+  "likeError": "Error liking",
+  "unlikeError": "Error unliking",
+  "pleaseLogin": "Please log in to see items",
+  "pleaseLoginToSeeListings": "Please login to see listings",
+  "pleaseLoginToLike": "Please log in to like items",
+  "loadError": "Error loading items",
+  "loadListingsError": "Error loading items: {error}",
+  "noArticlesFound": "No articles found",
+  "articlesNearby": "Articles nearby ({radius} km)",
+  "filterButton": "Filter",
+  "radiusIcon": "Set radius",
+  "searchIcon": "Search",
+  "addIcon": "Create listing",
+  "refreshIcon": "Refresh",
+  "settingsIcon": "Settings",
+  "profileIcon": "Profile",
+  "editIcon": "Edit",
+  "deleteIcon": "Delete",
+  "shareIcon": "Share",
+  "likeIcon": "Like",
+  "unlikeIcon": "Unlike",
+  "chatIcon": "Chat",
+  "messageIcon": "Message",
+  "locationIcon": "Location",
+  "cameraIcon": "Camera",
+  "galleryIcon": "Gallery",
+  "imageIcon": "Image",
+  "priceIcon": "Price",
+  "categoryIcon": "Category",
+  "conditionIcon": "Condition",
+  "descriptionIcon": "Description",
+  "titleIcon": "Title",
+  "userIcon": "User",
+  "storeIcon": "Store",
+  "communityIcon": "Community",
+  "groupIcon": "Group",
+  "membersIcon": "Members",
+  "adminIcon": "Administrator",
+  "moderatorIcon": "Moderator",
+  "memberIcon": "Member",
+  "inviteIcon": "Invite",
+  "leaveIcon": "Leave",
+  "joinIcon": "Join",
+  "createIcon": "Create",
+  "saveIcon": "Save",
+  "cancelIcon": "Cancel",
+  "confirmIcon": "Confirm",
+  "backIcon": "Back",
+  "nextIcon": "Next",
+  "doneIcon": "Done",
+  "loadingIcon": "Loading...",
+  "errorIcon": "Error",
+  "successIcon": "Success",
+  "warningIcon": "Warning",
+  "infoIcon": "Information",
+  "closeIcon": "Close",
+  "okIcon": "OK",
+  "yesIcon": "Yes",
+  "noIcon": "No",
+  "premiumFeatures": "Premium Features",
+  "@premiumFeatures": {
+    "description": "Title for premium features section"
+  },
+  "store": "Store",
+  "myStores": "My Stores",
+  "createStore": "Create Store",
+  "storeType": "Store Type",
+  "storeTypeDescription": "Choose the store type that best fits your needs.",
+  "privateFleaMarket": "Second-Hand Dealer",
+  "privateFleaMarketDescription": "For individuals selling used items (similar to a private flea market).",
+  "smallStore": "Small Store (Hobby / Handmade)",
+  "smallStoreDescription": "For creative products like jewelry, decor, DIY - also as a side income.",
+  "professionalStore": "Professional Store",
+  "professionalStoreDescription": "For regular or commercial providers with higher needs.",
+  "storeConfiguration": "Configure Store",
+  "storeConfigurationDescription": "Enter the basic information for your store.",
+  "storeLogo": "Store Logo",
+  "storeName": "Store Name",
+  "storeDescription": "Store Description",
+  "storeNameHint": "e.g. My Second-Hand Boutique",
+  "storeDescriptionHint": "Describe your store and what you offer...",
+  "storeCreated": "Store created successfully!",
+  "storeCreating": "Creating store...",
+  "storeError": "Error creating store",
+  "noStoreYet": "You don't have a store yet",
+  "noStoreDescription": "Create your own store and sell unlimited!",
+  "storeFeatures": "Features",
+  "storePrice": "Price",
+  "storeFeaturesBasic": "Simple store, Basic functions, Minimal price",
+  "storeFeaturesSmall": "Custom design (Logo, colors, text), Creative products, Side income possible",
+  "storeFeaturesProfessional": "Advanced features, Radius advertising, Statistics, Commercial use",
+  "storePriceFree": "Free",
+  "storePriceSmall": "Small price",
+  "storePriceSubscription": "Subscription model",
+  "payment": "Payment",
+  "paymentMethod": "Payment method",
+  "paymentMethods": "Payment methods",
+  "creditCard": "Credit Card",
+  "applePay": "Apple Pay",
+  "twint": "Twint",
+  "paypal": "PayPal",
+  "stripe": "Stripe",
+  "payrexx": "Payrexx",
+  "paymentAmount": "Payment amount",
+  "paymentStatus": "Payment status",
+  "paymentCompleted": "Payment completed",
+  "paymentPending": "Payment pending",
+  "paymentFailed": "Payment failed",
+  "paymentRefunded": "Payment refunded",
+  "paymentCancelled": "Payment cancelled",
+  "paymentHistory": "Payment history",
+  "paymentReceipt": "Receipt",
+  "paymentDate": "Payment date",
+  "paymentType": "Payment type",
+  "premiumMonthly": "Premium Month",
+  "premiumYearly": "Premium Year",
+  "addonSwaps5": "+5 Swaps",
+  "addonSells5": "+5 Sells",
+  "premiumMonthlyPrice": "CHF 5",
+  "premiumYearlyPrice": "CHF 54",
+  "addonSwaps5Price": "CHF 1",
+  "addonSells5Price": "CHF 1",
+  "premiumMonthlyTitle": "Swap&Shop Premium - Monthly Subscription",
+  "premiumYearlyTitle": "Swap&Shop Premium - Yearly Subscription",
+  "addonSwaps5Title": "Swap&Shop +5 Swaps",
+  "addonSells5Title": "Swap&Shop +5 Sells",
+  "premiumMonthlyDescription": "Unlimited swaps and sells for 1 month",
+  "premiumYearlyDescription": "Unlimited swaps and sells for 1 year",
+  "addonSwaps5Description": "5 additional swaps - 50% donation / 50% development",
+  "addonSells5Description": "5 additional sells - 50% donation / 50% development",
+  "addonDonationText": "50% of your payment will be donated – 50% goes to app development.",
+  "upgradeToPremium": "Upgrade to Premium",
+  "purchaseAddon": "Purchase Add-on",
+  "selectPaymentMethod": "Select payment method",
+  "confirmPayment": "Confirm payment",
+  "processingPayment": "Processing payment...",
+  "paymentSuccessful": "Payment successful!",
+  "paymentError": "Payment error",
+  "insufficientFunds": "Insufficient funds",
+  "cardDeclined": "Card declined",
+  "networkError": "Network error",
+  "tryAgain": "Try again",
+  "limits": "Limits",
+  "freeLimits": "Free limits",
+  "premiumLimits": "Premium limits",
+  "swapsUsed": "Swaps used",
+  "sellsUsed": "Sells used",
+  "swapsRemaining": "Swaps remaining",
+  "sellsRemaining": "Sells remaining",
+  "addonSwapsRemaining": "Add-on swaps remaining",
+  "addonSellsRemaining": "Add-on sells remaining",
+  "maxFreeSwaps": "Max free swaps",
+  "maxFreeSells": "Max free sells",
+  "maxFreeGiveaways": "Max free giveaways",
+  "limitReached": "Limit reached",
+  "swapLimitReached": "You have reached your free swap limit",
+  "sellLimitReached": "You have reached your free sell limit",
+  "giveawayLimitReached": "You have reached your free giveaway limit",
+  "limitDialogTitle": "Limit reached",
+  "limitDialogDescription": "You have reached your free limit for this month.",
+  "limitDialogPremium": "Upgrade to Premium for unlimited usage",
+  "limitDialogAddon": "Or purchase an add-on for additional usage",
+  "limitDialogContinue": "Continue with free limits",
+  "limitDialogCancel": "Cancel",
+  "limitDialogUpgrade": "Upgrade",
+  "limitDialogPurchase": "Purchase",
+  "limitDialogInfo": "Info",
+  "limitDialogInfoText": "Your limits are automatically reset every month.",
+  "limitDialogInfoTextPremium": "With Premium you have unlimited usage.",
+  "limitDialogInfoTextAddon": "Add-ons give you additional usage for the current month."
+} 

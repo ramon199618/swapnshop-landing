@@ -19,29 +19,48 @@ import 'screens/create_listing_screen.dart';
 import 'screens/login_screen.dart';
 import 'config/supabase_config.dart';
 import 'services/auth_service.dart';
+import 'navigation/app_router.dart';
+import 'widgets/main_navigation.dart';
+import 'services/monitoring_service.dart';
 import 'dart:ui';
 
 void main() async {
   // Wichtig: WidgetsFlutterBinding.ensureInitialized() MUSS als erstes aufgerufen werden
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Monitoring initialisieren
+  await MonitoringService.initialize();
+
   // Umfassendes Error-Handling für App-Start
   FlutterError.onError = (FlutterErrorDetails details) {
     debugPrint('🚨 Flutter Error: ${details.exception}');
     debugPrint('🚨 Stack: ${details.stack}');
+
+    // Fehler an Monitoring-Service melden
+    MonitoringService.reportError(
+      details.exception,
+      details.stack,
+      context: 'Flutter Error Handler',
+    );
   };
 
   // PlatformDispatcher Error Handling
   PlatformDispatcher.instance.onError = (error, stack) {
     debugPrint('🚨 Platform Error: $error');
     debugPrint('🚨 Stack: $stack');
+
+    // Fehler an Monitoring-Service melden
+    MonitoringService.reportError(
+      error,
+      stack,
+      context: 'Platform Error Handler',
+    );
+
     return true;
   };
 
   debugPrint('🚀 App-Start beginnt...');
 
-  // App IMMER starten, auch ohne Supabase
-  debugPrint('🚀 Starte App ohne Supabase-Abhängigkeit...');
   runApp(const SwapAndShopApp());
 }
 
@@ -85,6 +104,9 @@ class SwapAndShopApp extends StatelessWidget {
             darkTheme: AppTheme.darkTheme,
             themeMode: themeProvider.themeMode,
 
+            // Navigation
+            initialRoute: AppRouter.home,
+            onGenerateRoute: AppRouter.generateRoute,
             home: const AuthWrapper(),
 
             // Fallback für Fehler
@@ -160,15 +182,35 @@ class _AuthWrapperState extends State<AuthWrapper> {
   Future<void> _initializeSupabase() async {
     try {
       debugPrint('🔄 Starte Supabase-Initialisierung...');
-      await Supabase.initialize(
-        url: SupabaseConfig.url,
-        anonKey: SupabaseConfig.anonKey,
-      );
-      setState(() {
-        _supabaseInitialized = true;
-        _isInitializing = false;
-      });
-      debugPrint('✅ Supabase erfolgreich initialisiert');
+      debugPrint('🔍 URL: ${SupabaseConfig.url}');
+      debugPrint('🔍 Key konfiguriert: ${SupabaseConfig.isConfigured}');
+
+      if (!SupabaseConfig.isConfigured) {
+        throw Exception(
+            'Supabase nicht konfiguriert. Bitte setze den echten anon key in lib/config/supabase_keys.dart');
+      }
+
+      // Prüfe ob Supabase bereits initialisiert ist
+             try {
+               Supabase.instance.client;
+               debugPrint('✅ Supabase bereits initialisiert');
+        setState(() {
+          _supabaseInitialized = true;
+          _isInitializing = false;
+        });
+        return;
+      } catch (e) {
+        // Supabase ist noch nicht initialisiert, initialisiere es
+        await Supabase.initialize(
+          url: SupabaseConfig.url,
+          anonKey: SupabaseConfig.anonKey,
+        );
+        setState(() {
+          _supabaseInitialized = true;
+          _isInitializing = false;
+        });
+        debugPrint('✅ Supabase erfolgreich initialisiert');
+      }
     } catch (e) {
       debugPrint('❌ Supabase-Initialisierung fehlgeschlagen: $e');
       setState(() {
@@ -200,8 +242,8 @@ class _AuthWrapperState extends State<AuthWrapper> {
       debugPrint('🔍 Supabase verfügbar: $_supabaseInitialized');
 
       if (!_supabaseInitialized) {
-        debugPrint('❌ Supabase nicht verfügbar, zeige Login-Screen');
-        return const LoginScreen();
+        debugPrint('❌ Supabase nicht verfügbar, zeige Konfigurations-Screen');
+        return const SupabaseConfigScreen();
       }
 
       final currentUser = AuthService.getCurrentUser();
@@ -209,7 +251,7 @@ class _AuthWrapperState extends State<AuthWrapper> {
 
       if (currentUser != null) {
         debugPrint('✅ User eingeloggt, zeige Haupt-App');
-        return const MainNavigationScreen();
+        return const MainNavigation();
       } else {
         debugPrint('❌ Kein User, zeige Login-Screen');
         return const LoginScreen();
@@ -300,6 +342,181 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+    );
+  }
+}
+
+class SupabaseConfigScreen extends StatelessWidget {
+  const SupabaseConfigScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Logo/Title
+              const Icon(
+                Icons.settings,
+                size: 80,
+                color: AppColors.primary,
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'Supabase Konfiguration',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primary,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'App muss konfiguriert werden',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.grey,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 32),
+
+              // Error Message
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.red[50],
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.red[200]!),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.error_outline, color: Colors.red[600]),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Supabase nicht konfiguriert',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red[600],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      'Die App benötigt einen echten Supabase anon key, um zu funktionieren.',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 24),
+
+              // Instructions
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.blue[50],
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.blue[200]!),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.info_outline, color: Colors.blue[600]),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Anleitung',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue[600],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      '1. Gehe zu deinem Supabase Dashboard\n'
+                      '2. Öffne die API-Einstellungen\n'
+                      '3. Kopiere den "anon public" key\n'
+                      '4. Öffne die Datei: lib/config/supabase_keys.dart\n'
+                      '5. Ersetze "HIER_DEIN_ECHTER_ANON_KEY_EINFÜGEN" mit deinem echten Key\n'
+                      '6. Starte die App neu',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 24),
+
+              // Current Status
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Aktuelle Konfiguration:',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text('URL: ${SupabaseConfig.url}'),
+                    Text(
+                        'Key konfiguriert: ${SupabaseConfig.isConfigured ? "Ja" : "Nein"}'),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 32),
+
+              // Retry Button
+              ElevatedButton(
+                onPressed: () {
+                  // Restart the app
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                        builder: (context) => const AuthWrapper()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primary,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: const Text(
+                  'App neu starten',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

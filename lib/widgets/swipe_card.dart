@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/listing.dart';
+import '../constants/colors.dart';
 
 class SwipeCard extends StatefulWidget {
   final Listing? item;
@@ -138,7 +139,19 @@ class _SwipeCardState extends State<SwipeCard> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final itemTitle = widget.item?.title ?? 'Kein Titel';
+    // Null-Pointer-Schutz
+    if (widget.item == null) {
+      return const Card(
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Center(
+            child: Text('Kein Artikel verfügbar'),
+          ),
+        ),
+      );
+    }
+
+    final itemTitle = widget.item!.title;
 
     return GestureDetector(
       onPanStart: (details) {
@@ -154,14 +167,29 @@ class _SwipeCardState extends State<SwipeCard> with TickerProviderStateMixin {
         if (_isAnimating) return;
 
         final velocity = details.velocity.pixelsPerSecond;
-        final dragDistance = _dragOffset.dx;
 
-        // Swipe-Schwelle (25-35% der Kartenbreite)
+        // Swap&Shop Swipe-Gesten: Up/Down statt Left/Right
+        final screenHeight = MediaQuery.of(context).size.height;
         final screenWidth = MediaQuery.of(context).size.width;
-        final threshold = screenWidth * 0.3; // 30% der Bildschirmbreite
+        final verticalThreshold = screenHeight * 0.15; // 15% der Bildschirmhöhe
+        final horizontalThreshold =
+            screenWidth * 0.4; // 40% für horizontale Swipes
 
-        if (dragDistance.abs() > threshold || velocity.dx.abs() > 800) {
-          if (dragDistance > 0) {
+        // Vertikale Swipes (Up/Down) - Hauptinteraktion
+        if (_dragOffset.dy.abs() > verticalThreshold ||
+            velocity.dy.abs() > 600) {
+          if (_dragOffset.dy < 0) {
+            // Swipe Up = Interesse zeigen (Like)
+            _onSwipeRight();
+          } else {
+            // Swipe Down = Nicht interessant (Dislike)
+            _onSwipeLeft();
+          }
+        }
+        // Horizontale Swipes als Alternative (weniger prominent)
+        else if (_dragOffset.dx.abs() > horizontalThreshold ||
+            velocity.dx.abs() > 800) {
+          if (_dragOffset.dx > 0) {
             _onSwipeRight();
           } else {
             _onSwipeLeft();
@@ -178,13 +206,16 @@ class _SwipeCardState extends State<SwipeCard> with TickerProviderStateMixin {
           return Transform(
             transform: Matrix4.identity()
               ..translate(_dragOffset.dx, _dragOffset.dy)
-              ..rotateZ(_dragOffset.dx * 0.02 + _rotationAnimation.value)
+              ..rotateZ(_dragOffset.dy * 0.01 +
+                  _rotationAnimation.value *
+                      0.5) // Less rotation, more vertical
               ..scale(_scaleAnimation.value),
             child: Card(
               elevation: 12,
               shadowColor: Colors.black.withValues(alpha: 0.3),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius:
+                    BorderRadius.circular(12), // Less rounded than Tinder
               ),
               child: Container(
                 width: double.infinity,
@@ -204,7 +235,7 @@ class _SwipeCardState extends State<SwipeCard> with TickerProviderStateMixin {
                       child: const Icon(
                         Icons.image,
                         size: 70,
-                        color: Colors.orangeAccent,
+                        color: AppColors.primary,
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -254,7 +285,7 @@ class _SwipeCardState extends State<SwipeCard> with TickerProviderStateMixin {
                         widget.extraInfo!,
                         style: const TextStyle(
                           fontSize: 13,
-                          color: Colors.orange,
+                          color: AppColors.primary,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -278,6 +309,42 @@ class _SwipeCardState extends State<SwipeCard> with TickerProviderStateMixin {
                     ),
 
                     const Spacer(),
+
+                    // Swap&Shop Swipe-Anleitung
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: AppColors.primary.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: AppColors.primary.withValues(alpha: 0.3),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.swipe_up,
+                              size: 16, color: AppColors.likeAction),
+                          const SizedBox(width: 4),
+                          const Text('Interesse',
+                              style: TextStyle(
+                                  color: AppColors.likeAction,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold)),
+                          const SizedBox(width: 12),
+                          const Icon(Icons.swipe_down,
+                              size: 16, color: AppColors.dislikeAction),
+                          const SizedBox(width: 4),
+                          const Text('Nicht interessant',
+                              style: TextStyle(
+                                  color: AppColors.dislikeAction,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                    ),
 
                     // Tag-basierte Hinweise (nur bei Swap)
                     if (widget.item?.category == 'swap' &&
@@ -315,11 +382,11 @@ class _SwipeCardState extends State<SwipeCard> with TickerProviderStateMixin {
                       ],
                     ],
 
-                    // Like/Dislike/Chat Buttons
+                    // Swap&Shop Action Buttons (distinct from Tinder)
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        // X-Button (Dislike)
+                        // Thumb Down Button (Not Interested)
                         AnimatedBuilder(
                           animation: _scaleController,
                           builder: (context, child) {
@@ -327,11 +394,13 @@ class _SwipeCardState extends State<SwipeCard> with TickerProviderStateMixin {
                               scale: 1.0 - _scaleController.value * 0.1,
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.red.shade50,
-                                  shape: BoxShape.circle,
+                                  color: AppColors.dislikeActionLight,
+                                  borderRadius: BorderRadius.circular(
+                                      8), // Square-ish instead of circle
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.red.withValues(alpha: 0.2),
+                                      color: AppColors.dislikeAction
+                                          .withValues(alpha: 0.2),
                                       blurRadius: 8,
                                       offset: const Offset(0, 2),
                                     ),
@@ -339,8 +408,8 @@ class _SwipeCardState extends State<SwipeCard> with TickerProviderStateMixin {
                                 ),
                                 child: IconButton(
                                   icon: const Icon(
-                                    Icons.close,
-                                    color: Colors.red,
+                                    Icons.thumb_down,
+                                    color: AppColors.dislikeAction,
                                     size: 28,
                                   ),
                                   onPressed: () =>
@@ -351,7 +420,7 @@ class _SwipeCardState extends State<SwipeCard> with TickerProviderStateMixin {
                           },
                         ),
 
-                        // Chat-Button (immer sichtbar)
+                        // Message Button (Contact)
                         AnimatedBuilder(
                           animation: _scaleController,
                           builder: (context, child) {
@@ -359,11 +428,13 @@ class _SwipeCardState extends State<SwipeCard> with TickerProviderStateMixin {
                               scale: 1.0 - _scaleController.value * 0.1,
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.blue.shade50,
-                                  shape: BoxShape.circle,
+                                  color: AppColors.contactActionLight,
+                                  borderRadius: BorderRadius.circular(
+                                      8), // Square-ish instead of circle
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.blue.withValues(alpha: 0.2),
+                                      color: AppColors.contactAction
+                                          .withValues(alpha: 0.2),
                                       blurRadius: 8,
                                       offset: const Offset(0, 2),
                                     ),
@@ -371,8 +442,8 @@ class _SwipeCardState extends State<SwipeCard> with TickerProviderStateMixin {
                                 ),
                                 child: IconButton(
                                   icon: const Icon(
-                                    Icons.chat_bubble_outline,
-                                    color: Colors.blue,
+                                    Icons.message,
+                                    color: AppColors.contactAction,
                                     size: 28,
                                   ),
                                   onPressed: () => _onButtonTap(widget.onChat),
@@ -382,7 +453,7 @@ class _SwipeCardState extends State<SwipeCard> with TickerProviderStateMixin {
                           },
                         ),
 
-                        // Herz-Button (Like)
+                        // Thumb Up Button (Interested)
                         AnimatedBuilder(
                           animation: _scaleController,
                           builder: (context, child) {
@@ -390,11 +461,13 @@ class _SwipeCardState extends State<SwipeCard> with TickerProviderStateMixin {
                               scale: 1.0 - _scaleController.value * 0.1,
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.pink.shade50,
-                                  shape: BoxShape.circle,
+                                  color: AppColors.likeActionLight,
+                                  borderRadius: BorderRadius.circular(
+                                      8), // Square-ish instead of circle
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.pink.withValues(alpha: 0.2),
+                                      color: AppColors.likeAction
+                                          .withValues(alpha: 0.2),
                                       blurRadius: 8,
                                       offset: const Offset(0, 2),
                                     ),
@@ -402,8 +475,8 @@ class _SwipeCardState extends State<SwipeCard> with TickerProviderStateMixin {
                                 ),
                                 child: IconButton(
                                   icon: const Icon(
-                                    Icons.favorite,
-                                    color: Colors.pink,
+                                    Icons.thumb_up,
+                                    color: AppColors.likeAction,
                                     size: 28,
                                   ),
                                   onPressed: () =>

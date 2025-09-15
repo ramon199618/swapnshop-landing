@@ -81,12 +81,13 @@ class ChatTile extends StatelessWidget {
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
+                  color: AppColors.textOnWhite,
                 ),
               ),
             ),
             Text(
               time,
-              style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+              style: const TextStyle(fontSize: 12, color: AppColors.textSecondary),
             ),
           ],
         ),
@@ -95,7 +96,7 @@ class ChatTile extends StatelessWidget {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            color: unreadCount > 0 ? Colors.black87 : Colors.grey.shade600,
+            color: unreadCount > 0 ? AppColors.textOnWhite : AppColors.textSecondary,
             fontWeight: unreadCount > 0 ? FontWeight.w500 : FontWeight.normal,
           ),
         ),
