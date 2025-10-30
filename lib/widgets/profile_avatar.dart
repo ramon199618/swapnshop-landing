@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import '../constants/colors.dart';
 
 class ProfileAvatar extends StatelessWidget {
   final File? imageFile;
@@ -42,7 +43,7 @@ class ProfileAvatar extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
-                color: Colors.orangeAccent,
+                color: AppColors.primary,
                 shape: BoxShape.circle,
                 border: Border.all(color: Colors.white, width: 2),
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 import '../services/location_service.dart';
+import '../constants/colors.dart';
 
 class FilterSheet extends StatefulWidget {
   final double? initialRadius;
@@ -44,14 +45,24 @@ class _FilterSheetState extends State<FilterSheet> {
         children: [
           Text(
             l10n.filterTitle,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+              fontSize: 18, 
+              fontWeight: FontWeight.bold,
+              color: AppColors.textOnWhite,
+            ),
           ),
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(l10n.radius),
-              Text('${radiusValue.round()} km'),
+              Text(
+                l10n.radius,
+                style: const TextStyle(color: AppColors.textOnWhite),
+              ),
+              Text(
+                '${radiusValue.round()} km',
+                style: const TextStyle(color: AppColors.textOnWhite),
+              ),
             ],
           ),
           Slider(
@@ -69,8 +80,17 @@ class _FilterSheetState extends State<FilterSheet> {
             controller: keywordController,
             decoration: const InputDecoration(
               labelText: 'Stichwort',
+              labelStyle: TextStyle(color: AppColors.textOnWhite),
+              hintStyle: TextStyle(color: AppColors.textSecondary),
               border: OutlineInputBorder(),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.borderLight),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.primary),
+              ),
             ),
+            style: const TextStyle(color: AppColors.textOnWhite),
           ),
           const SizedBox(height: 16),
           ElevatedButton(
@@ -90,7 +110,8 @@ class _FilterSheetState extends State<FilterSheet> {
               navigator.pop();
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.orangeAccent,
+              backgroundColor: AppColors.primary,
+              foregroundColor: AppColors.textOnBlue,
             ),
             child: Text(l10n.filterApply),
           ),

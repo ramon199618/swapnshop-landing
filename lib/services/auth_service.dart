@@ -115,10 +115,29 @@ class AuthService {
       );
 
       if (response.user == null) {
-        throw Exception('Anmeldung fehlgeschlagen');
+        throw Exception('Anmeldung fehlgeschlagen - Benutzer nicht gefunden');
       }
+      
+      debugPrint('✅ Benutzer erfolgreich angemeldet: ${response.user!.email}');
     } catch (e) {
-      throw Exception('Anmeldung fehlgeschlagen: $e');
+      debugPrint('❌ Anmeldung fehlgeschlagen: $e');
+      
+      // Spezifische Fehlermeldungen
+      if (e.toString().contains('Invalid login credentials')) {
+        throw Exception('Ungültige E-Mail-Adresse oder Passwort');
+      } else if (e.toString().contains('Email not confirmed')) {
+        throw Exception('Bitte bestätige zuerst deine E-Mail-Adresse');
+      } else if (e.toString().contains('Too many requests')) {
+        throw Exception('Zu viele Anmeldeversuche. Bitte warte einen Moment');
+      } else if (e.toString().contains('Invalid email')) {
+        throw Exception('Ungültige E-Mail-Adresse');
+      } else if (e.toString().contains('Password should be at least')) {
+        throw Exception('Passwort muss mindestens 6 Zeichen lang sein');
+      } else if (e.toString().contains('Network error') || e.toString().contains('Connection')) {
+        throw Exception('Netzwerkfehler. Bitte überprüfe deine Internetverbindung');
+      } else {
+        throw Exception('Anmeldung fehlgeschlagen: ${e.toString()}');
+      }
     }
   }
 
@@ -136,8 +155,10 @@ class AuthService {
       );
 
       if (response.user == null) {
-        throw Exception('Registrierung fehlgeschlagen');
+        throw Exception('Registrierung fehlgeschlagen - Benutzer konnte nicht erstellt werden');
       }
+
+      debugPrint('✅ Benutzer erfolgreich registriert: ${response.user!.email}');
 
       // Create user profile
       final userProfile = UserModel(
@@ -147,8 +168,24 @@ class AuthService {
       );
 
       await DatabaseService.createUserProfile(userProfile);
+      debugPrint('✅ Benutzerprofil erfolgreich erstellt');
     } catch (e) {
-      throw Exception('Registrierung fehlgeschlagen: $e');
+      debugPrint('❌ Registrierung fehlgeschlagen: $e');
+      
+      // Spezifische Fehlermeldungen
+      if (e.toString().contains('User already registered')) {
+        throw Exception('Diese E-Mail-Adresse ist bereits registriert');
+      } else if (e.toString().contains('Invalid email')) {
+        throw Exception('Ungültige E-Mail-Adresse');
+      } else if (e.toString().contains('Password should be at least')) {
+        throw Exception('Passwort muss mindestens 6 Zeichen lang sein');
+      } else if (e.toString().contains('Password is too weak')) {
+        throw Exception('Passwort ist zu schwach. Verwende mindestens 8 Zeichen mit Buchstaben und Zahlen');
+      } else if (e.toString().contains('Network error') || e.toString().contains('Connection')) {
+        throw Exception('Netzwerkfehler. Bitte überprüfe deine Internetverbindung');
+      } else {
+        throw Exception('Registrierung fehlgeschlagen: ${e.toString()}');
+      }
     }
   }
 

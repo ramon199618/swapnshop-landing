@@ -34,8 +34,8 @@ class CategorySelector extends StatelessWidget {
                 onCategoryChanged?.call(cat);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: selected ? AppColors.accent : Colors.grey[200],
-                foregroundColor: selected ? Colors.white : Colors.black,
+                backgroundColor: selected ? AppColors.primary : Colors.grey[200],
+                foregroundColor: selected ? Colors.white : AppColors.textOnWhite,
               ),
               child: Text(cat),
             ),

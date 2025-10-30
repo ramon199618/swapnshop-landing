@@ -1,0 +1,204 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "🚀 Run iPhone (Debug)",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["run", "--debug"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "detail": "Startet die App im Debug-Modus auf dem verbundenen iPhone"
+        },
+        {
+            "label": "📱 Run iPhone (Release)",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["run", "--release"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "detail": "Startet die App im Release-Modus auf dem verbundenen iPhone"
+        },
+        {
+            "label": "🧹 Flutter Clean",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["clean"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "detail": "Löscht alle Build-Artefakte und Cache-Dateien"
+        },
+        {
+            "label": "📦 Pub Get",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["pub", "get"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "detail": "Lädt alle Dependencies aus pubspec.yaml herunter"
+        },
+        {
+            "label": "🍎 Build iOS",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["build", "ios"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "detail": "Erstellt einen iOS-Build der App"
+        },
+        {
+            "label": "🤖 Build Android",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["build", "apk"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "detail": "Erstellt einen Android APK-Build der App"
+        },
+        {
+            "label": "🧪 Tests ausführen",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["test"],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "detail": "Führt alle Unit- und Widget-Tests aus"
+        },
+        {
+            "label": "🔍 Flutter Doctor",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["doctor"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "detail": "Überprüft die Flutter-Installation und Konfiguration"
+        },
+        {
+            "label": "📱 Geräte anzeigen",
+            "type": "shell",
+            "command": "flutter",
+            "args": ["devices"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "detail": "Zeigt alle verfügbaren Geräte für das Deployment an"
+        },
+        {
+            "label": "🔄 Hot Reload",
+            "type": "shell",
+            "command": "r",
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "detail": "Führt Hot Reload aus (nur wenn App läuft)"
+        }
+    ]
+}

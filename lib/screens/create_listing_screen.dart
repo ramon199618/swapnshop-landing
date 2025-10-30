@@ -74,7 +74,10 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
       debugPrint('Fehler beim Bild auswählen: $e');
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Fehler beim Auswählen des Bildes')),
+        const SnackBar(
+          content: Text('Fehler beim Auswählen des Bildes'),
+          backgroundColor: Colors.red,
+        ),
       );
     }
   }
@@ -94,7 +97,7 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
             const SnackBar(
               content: Text(
                   'Standort-Berechtigung erforderlich für bessere Sichtbarkeit'),
-              backgroundColor: Colors.orange,
+              backgroundColor: AppColors.primary,
             ),
           );
         }
@@ -108,7 +111,7 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Bitte aktivieren Sie die Standort-Dienste'),
-              backgroundColor: Colors.orange,
+              backgroundColor: AppColors.primary,
             ),
           );
         }
@@ -369,41 +372,87 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
             const SizedBox(height: 20),
 
             // Name
-            Text(l10n.ownerName),
+            Text(
+              l10n.ownerName,
+              style: const TextStyle(color: AppColors.textOnWhite),
+            ),
             TextField(
               controller: ownerNameController,
               decoration: InputDecoration(
                 hintText: l10n.ownerNameHint,
+                hintStyle: const TextStyle(color: AppColors.textSecondary),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.borderLight),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.primary),
+                ),
               ),
+              style: const TextStyle(color: AppColors.textOnWhite),
             ),
             const SizedBox(height: 16),
 
             // Titel
-            Text(l10n.title),
+            Text(
+              l10n.title,
+              style: const TextStyle(color: AppColors.textOnWhite),
+            ),
             TextField(
               controller: titleController,
-              decoration: InputDecoration(hintText: l10n.titleHint),
+              decoration: InputDecoration(
+                hintText: l10n.titleHint,
+                hintStyle: const TextStyle(color: AppColors.textSecondary),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.borderLight),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.primary),
+                ),
+              ),
+              style: const TextStyle(color: AppColors.textOnWhite),
             ),
             const SizedBox(height: 16),
 
             // Beschreibung
-            Text(l10n.description),
+            Text(
+              l10n.description,
+              style: const TextStyle(color: AppColors.textOnWhite),
+            ),
             TextField(
               controller: descriptionController,
               maxLines: 3,
               decoration: InputDecoration(
                 hintText: l10n.descriptionHint,
+                hintStyle: const TextStyle(color: AppColors.textSecondary),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.borderLight),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.primary),
+                ),
               ),
+              style: const TextStyle(color: AppColors.textOnWhite),
             ),
             const SizedBox(height: 16),
 
             // Kategorie
-            Text(l10n.category),
+            Text(
+              l10n.category,
+              style: const TextStyle(color: AppColors.textOnWhite),
+            ),
             DropdownButton<String>(
               value: selectedCategory,
               isExpanded: true,
+              dropdownColor: Colors.white,
+              style: const TextStyle(color: AppColors.textOnWhite),
               items: categories.map((cat) {
-                return DropdownMenuItem<String>(value: cat, child: Text(cat));
+                return DropdownMenuItem<String>(
+                  value: cat,
+                  child: Text(
+                    cat,
+                    style: const TextStyle(color: AppColors.textOnWhite),
+                  ),
+                );
               }).toList(),
               onChanged: (value) {
                 setState(() {
@@ -419,13 +468,27 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
 
             // Job-Kategorie (nur bei "Job/Hilfe inserieren")
             if (selectedCategory == 'Job/Hilfe inserieren') ...[
-              const Text('Job-Kategorie'),
+              const Text(
+                'Job-Kategorie',
+                style: TextStyle(color: AppColors.textOnWhite),
+              ),
               DropdownButton<String>(
                 value: selectedJobCategory,
                 isExpanded: true,
-                hint: const Text('Bitte wähle eine Job-Kategorie'),
+                dropdownColor: Colors.white,
+                style: const TextStyle(color: AppColors.textOnWhite),
+                hint: const Text(
+                  'Bitte wähle eine Job-Kategorie',
+                  style: TextStyle(color: AppColors.textSecondary),
+                ),
                 items: jobCategories.map((cat) {
-                  return DropdownMenuItem<String>(value: cat, child: Text(cat));
+                  return DropdownMenuItem<String>(
+                    value: cat,
+                    child: Text(
+                      cat,
+                      style: const TextStyle(color: AppColors.textOnWhite),
+                    ),
+                  );
                 }).toList(),
                 onChanged: (value) {
                   setState(() {
@@ -436,23 +499,40 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
               const SizedBox(height: 16),
 
               // Payment Type für Jobs
-              const Text('Bezahlung'),
+              const Text(
+                'Bezahlung',
+                style: TextStyle(color: AppColors.textOnWhite),
+              ),
               DropdownButton<String>(
                 value: selectedPaymentType,
                 isExpanded: true,
-                hint: const Text('Bitte wähle den Bezahlungstyp'),
+                dropdownColor: Colors.white,
+                style: const TextStyle(color: AppColors.textOnWhite),
+                hint: const Text(
+                  'Bitte wähle den Bezahlungstyp',
+                  style: TextStyle(color: AppColors.textSecondary),
+                ),
                 items: const [
                   DropdownMenuItem<String>(
                     value: 'paid',
-                    child: Text('Bezahlt (CHF/Stunde oder Pauschal)'),
+                    child: Text(
+                      'Bezahlt (CHF/Stunde oder Pauschal)',
+                      style: TextStyle(color: AppColors.textOnWhite),
+                    ),
                   ),
                   DropdownMenuItem<String>(
                     value: 'barter',
-                    child: Text('Tausch (Gegenleistung)'),
+                    child: Text(
+                      'Tausch (Gegenleistung)',
+                      style: TextStyle(color: AppColors.textOnWhite),
+                    ),
                   ),
                   DropdownMenuItem<String>(
                     value: 'both',
-                    child: Text('Beides möglich'),
+                    child: Text(
+                      'Beides möglich',
+                      style: TextStyle(color: AppColors.textOnWhite),
+                    ),
                   ),
                 ],
                 onChanged: (value) {
@@ -466,41 +546,76 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
 
             // Preis bei "Sell"
             if (selectedCategory == 'Sell') ...[
-              Text(l10n.price),
+              Text(
+                l10n.price,
+                style: const TextStyle(color: AppColors.textOnWhite),
+              ),
               TextField(
                 controller: priceController,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(hintText: l10n.priceHint),
+                decoration: InputDecoration(
+                  hintText: l10n.priceHint,
+                  hintStyle: const TextStyle(color: AppColors.textSecondary),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.borderLight),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.primary),
+                  ),
+                ),
+                style: const TextStyle(color: AppColors.textOnWhite),
               ),
               const SizedBox(height: 16),
             ],
 
             // Wert und Wunsch bei "Swap"
             if (selectedCategory == 'Swap') ...[
-              Text(l10n.swapValue),
+              Text(
+                l10n.swapValue,
+                style: const TextStyle(color: AppColors.textOnWhite),
+              ),
               TextField(
                 controller: valueController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   hintText: l10n.swapValueHint,
+                  hintStyle: const TextStyle(color: AppColors.textSecondary),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.borderLight),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.primary),
+                  ),
                 ),
+                style: const TextStyle(color: AppColors.textOnWhite),
               ),
               const SizedBox(height: 16),
-              Text(l10n.desiredSwapItem),
+              Text(
+                l10n.desiredSwapItem,
+                style: const TextStyle(color: AppColors.textOnWhite),
+              ),
               TextField(
                 controller: desiredSwapController,
                 decoration: InputDecoration(
                   hintText: l10n.desiredSwapItemHint,
+                  hintStyle: const TextStyle(color: AppColors.textSecondary),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.borderLight),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.primary),
+                  ),
                 ),
+                style: const TextStyle(color: AppColors.textOnWhite),
               ),
               const SizedBox(height: 16),
 
               // Offer Tags (Was wird angeboten?)
               Text(
                 'Was bietest du an? (1-3 Stichwörter, durch Komma getrennt)',
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w500,
-                  color: Colors.grey[700],
+                  color: AppColors.textOnWhite,
                 ),
               ),
               const SizedBox(height: 4),
@@ -508,19 +623,29 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
                 controller: offerTagsController,
                 decoration: InputDecoration(
                   hintText: 'z.B. Gitarre, Musikinstrument, Akustik',
+                  hintStyle: const TextStyle(color: AppColors.textSecondary),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.borderLight),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.primary),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
                 ),
+                style: const TextStyle(color: AppColors.textOnWhite),
               ),
               const SizedBox(height: 16),
 
               // Want Tags (Was wird gesucht?)
               Text(
                 'Was suchst du? (1-3 Stichwörter, durch Komma getrennt)',
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w500,
-                  color: Colors.grey[700],
+                  color: AppColors.textOnWhite,
                 ),
               ),
               const SizedBox(height: 4),
@@ -528,16 +653,29 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
                 controller: wantTagsController,
                 decoration: InputDecoration(
                   hintText: 'z.B. Keyboard, Klavier, Synthesizer',
+                  hintStyle: const TextStyle(color: AppColors.textSecondary),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.borderLight),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.primary),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
                 ),
+                style: const TextStyle(color: AppColors.textOnWhite),
               ),
               const SizedBox(height: 16),
             ],
 
             // Standort
-            Text(l10n.location),
+            Text(
+              l10n.location,
+              style: const TextStyle(color: AppColors.textOnWhite),
+            ),
             Row(
               children: [
                 Expanded(
@@ -545,7 +683,16 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
                     controller: locationController,
                     decoration: InputDecoration(
                       hintText: l10n.locationHint,
+                      hintStyle:
+                          const TextStyle(color: AppColors.textSecondary),
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.borderLight),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.primary),
+                      ),
                     ),
+                    style: const TextStyle(color: AppColors.textOnWhite),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -555,7 +702,10 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
                       ? const SizedBox(
                           width: 20,
                           height: 20,
-                          child: CircularProgressIndicator(strokeWidth: 2),
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: AppColors.primary,
+                          ),
                         )
                       : const Icon(Icons.my_location),
                   tooltip: 'Aktuellen Standort verwenden',
@@ -589,13 +739,16 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
+                            color: AppColors.textOnWhite,
                           ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           l10n.privacyDescription,
-                          style:
-                              const TextStyle(fontSize: 12, color: Colors.grey),
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: AppColors.textSecondary,
+                          ),
                         ),
                       ],
                     ),
@@ -607,10 +760,16 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
 
             // Anonyme Checkbox
             CheckboxListTile(
-              title: Text(l10n.anonymousPost),
+              title: Text(
+                l10n.anonymousPost,
+                style: const TextStyle(color: AppColors.textOnWhite),
+              ),
               subtitle: Text(
                 l10n.anonymousPostSubtitle,
-                style: const TextStyle(fontSize: 12),
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: AppColors.textSecondary,
+                ),
               ),
               value: isAnonymous,
               onChanged: (value) {
@@ -624,10 +783,23 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
             const SizedBox(height: 16),
 
             // Tags
-            Text(l10n.tags),
+            Text(
+              l10n.tags,
+              style: const TextStyle(color: AppColors.textOnWhite),
+            ),
             TextField(
               controller: tagsController,
-              decoration: InputDecoration(hintText: l10n.tagsHint),
+              decoration: InputDecoration(
+                hintText: l10n.tagsHint,
+                hintStyle: const TextStyle(color: AppColors.textSecondary),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.borderLight),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.primary),
+                ),
+              ),
+              style: const TextStyle(color: AppColors.textOnWhite),
             ),
             const SizedBox(height: 20),
 
@@ -636,7 +808,8 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
               child: ElevatedButton(
                 onPressed: saveListing,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.accent,
+                  backgroundColor: AppColors.primary,
+                  foregroundColor: AppColors.textOnBlue,
                 ),
                 child: Text(l10n.createListingButton),
               ),

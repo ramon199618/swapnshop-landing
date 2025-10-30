@@ -7,14 +7,12 @@ import '../services/auth_service.dart';
 import '../models/listing.dart';
 import '../widgets/swipe_card.dart';
 import '../widgets/banner_carousel.dart';
-
+import '../widgets/gradient_background.dart';
 import '../widgets/category_selector.dart';
 import '../widgets/filter_sheet.dart';
 import '../l10n/app_localizations.dart';
-import 'listing_detail_screen.dart';
-import 'create_listing_screen.dart';
-import 'search_results_screen.dart';
 import '../providers/language_provider.dart';
+import '../navigation/app_router.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,8 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Listing> _listings = [];
   bool _isLoading = true;
   String _selectedCategory = 'Alle';
-  double? _userLatitude;
-  double? _userLongitude;
+  String _searchQuery = '';
   double _radius = 25.0; // km
 
   @override
@@ -39,6 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _loadListings() async {
     if (!mounted) return;
+
+    // Race-Condition-Schutz: Prüfe ob bereits ein Load läuft
+    if (_isLoading) return;
 
     setState(() {
       _isLoading = true;
@@ -62,6 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
         userId: currentUser.id,
         radiusKm: _radius.toInt(),
         category: _selectedCategory == 'Alle' ? null : _selectedCategory,
+        searchQuery: _searchQuery.isNotEmpty ? _searchQuery : null,
         language: Localizations.localeOf(context).languageCode,
       );
 
@@ -82,10 +83,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _showErrorSnackBar(String message) {
+    if (!mounted) return;
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: Colors.red,
+        backgroundColor: AppColors.error,
       ),
     );
   }
@@ -110,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SnackBar(
             content:
                 Text(AppLocalizations.of(context)!.itemLiked(listing.title)),
-            backgroundColor: Colors.green,
+            backgroundColor: AppColors.likeAction,
             duration: const Duration(seconds: 1),
           ),
         );
@@ -140,9 +143,17 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() {
           _listings.removeWhere((l) => l.id == listing.id);
         });
+
+        // Check if we need to load more listings
+        if (_listings.length < 5) {
+          _loadMoreListings();
+        }
       }
     } catch (e) {
       debugPrint('Error unliking listing: $e');
+      if (mounted) {
+        _showErrorSnackBar('Fehler beim Entfernen des Artikels: $e');
+      }
     }
   }
 
@@ -166,6 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
         userId: currentUser.id,
         radiusKm: _radius.toInt(),
         category: _selectedCategory == 'Alle' ? null : _selectedCategory,
+        searchQuery: _searchQuery.isNotEmpty ? _searchQuery : null,
         language: Provider.of<LanguageProvider>(context, listen: false)
             .currentLocale
             .languageCode,
@@ -183,6 +195,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _onCategoryChanged(String category) {
+    if (category == _selectedCategory) return; // Verhindere unnötige Reloads
+
     setState(() {
       _selectedCategory = category;
     });
@@ -190,29 +204,32 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _onFilterApplied(Map<String, dynamic> filters) {
+    final newRadius = filters['radius'] ?? 25.0;
+    final newSearchQuery = filters['keyword'] ?? '';
+
+    // Verhindere unnötige Reloads wenn sich nichts geändert hat
+    if (newRadius == _radius && newSearchQuery == _searchQuery) return;
+
     setState(() {
-      _radius = filters['radius'] ?? 25.0;
-      _userLatitude = filters['latitude'];
-      _userLongitude = filters['longitude'];
+      _radius = newRadius;
+      _searchQuery = newSearchQuery;
     });
     _loadListings();
   }
 
   void _onCreateListingPressed() {
-    Navigator.push(
+    AppRouter.pushNamed(
       context,
-      MaterialPageRoute(
-        builder: (context) => const CreateListingScreen(),
-      ),
+      AppRouter.createListing,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return GradientScaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.home),
-        backgroundColor: AppColors.primary,
+        backgroundColor: Colors.transparent,
         foregroundColor: Colors.white,
         leading: IconButton(
           icon: const Icon(Icons.location_on),
@@ -220,6 +237,39 @@ class _HomeScreenState extends State<HomeScreen> {
           tooltip: AppLocalizations.of(context)!.radiusIcon,
         ),
         actions: [
+          // Zeige aktuellen Suchbegriff an
+          if (_searchQuery.isNotEmpty) ...[
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              margin: const EdgeInsets.only(right: 8),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '"$_searchQuery"',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  GestureDetector(
+                    onTap: _clearSearch,
+                    child: const Icon(
+                      Icons.close,
+                      color: Colors.white,
+                      size: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
           IconButton(
             icon: const Icon(Icons.search),
             onPressed: _showSearchDialog,
@@ -231,6 +281,7 @@ class _HomeScreenState extends State<HomeScreen> {
               showModalBottomSheet(
                 context: context,
                 builder: (context) => FilterSheet(
+                  initialKeyword: _searchQuery,
                   onFilterApplied: _onFilterApplied,
                 ),
               );
@@ -260,10 +311,26 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Row(
               children: [
                 Expanded(
-                  child: Text(
-                    AppLocalizations.of(context)!
-                        .articlesNearby(_radius.toInt()),
-                    style: Theme.of(context).textTheme.titleMedium,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!
+                            .articlesNearby(_radius.toInt()),
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      if (_searchQuery.isNotEmpty) ...[
+                        const SizedBox(height: 4),
+                        Text(
+                          'Suche: "$_searchQuery"',
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: AppColors.primary,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                        ),
+                      ],
+                    ],
                   ),
                 ),
               ],
@@ -273,7 +340,8 @@ class _HomeScreenState extends State<HomeScreen> {
           // Listings
           Expanded(
             child: _isLoading
-                ? const Center(child: CircularProgressIndicator())
+                ? const Center(
+                    child: CircularProgressIndicator(color: AppColors.primary))
                 : _listings.isEmpty
                     ? _buildEmptyState()
                     : _buildListingsList(),
@@ -341,7 +409,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _showSearchDialog() {
-    final TextEditingController searchController = TextEditingController();
+    final TextEditingController searchController =
+        TextEditingController(text: _searchQuery);
 
     showDialog(
       context: context,
@@ -355,8 +424,16 @@ class _HomeScreenState extends State<HomeScreen> {
               autofocus: true,
               decoration: InputDecoration(
                 labelText: AppLocalizations.of(context)!.searchTerm,
-                hintText: AppLocalizations.of(context)!.searchHintText,
+                hintText: 'z.B. Bücher, iPhone, Fahrrad...',
                 border: const OutlineInputBorder(),
+                suffixIcon: _searchQuery.isNotEmpty
+                    ? IconButton(
+                        icon: const Icon(Icons.clear),
+                        onPressed: () {
+                          searchController.clear();
+                        },
+                      )
+                    : null,
               ),
               onSubmitted: (query) {
                 Navigator.pop(context);
@@ -365,9 +442,27 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 16),
             Text(AppLocalizations.of(context)!.searchInRadius(_radius.toInt())),
+            if (_searchQuery.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Text(
+                'Aktuell: "$_searchQuery"',
+                style: TextStyle(
+                  color: AppColors.primary,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
           ],
         ),
         actions: [
+          if (_searchQuery.isNotEmpty)
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                _clearSearch();
+              },
+              child: const Text('Suche löschen'),
+            ),
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(AppLocalizations.of(context)!.cancel),
@@ -388,17 +483,18 @@ class _HomeScreenState extends State<HomeScreen> {
   void _performSearch(String query) {
     if (query.trim().isEmpty) return;
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SearchResultsScreen(
-          query: query,
-          radius: _radius,
-          latitude: _userLatitude,
-          longitude: _userLongitude,
-        ),
-      ),
-    );
+    // Setze Suchbegriff und lade neue Ergebnisse direkt im Swipe-Feed
+    setState(() {
+      _searchQuery = query.trim();
+    });
+    _loadListings();
+  }
+
+  void _clearSearch() {
+    setState(() {
+      _searchQuery = '';
+    });
+    _loadListings();
   }
 
   Widget _buildEmptyState() {
@@ -456,12 +552,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 onSwipeRight: () => _onSwipeRight(listing),
                 onSwipeLeft: () => _onSwipeLeft(listing),
                 onTap: () {
-                  Navigator.push(
+                  AppRouter.pushNamed(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          ListingDetailScreen(listingId: listing.id),
-                    ),
+                    AppRouter.listingDetail,
+                    arguments: {'listingId': listing.id},
                   );
                 },
               ),
