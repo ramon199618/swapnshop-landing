@@ -21,6 +21,16 @@
     <link rel="icon" type="image/png" href="icon/icon.png">
     <link rel="apple-touch-icon" href="icon/icon.png">
     <style>
+        :root {
+            --primary-color: #FF6B35; /* Warmes Orange */
+            --secondary-color: #FF8C61; /* Helleres Orange */
+            --accent-color: #FF6B35;
+            --background-light: #FFF7F3; /* warmes Off-White */
+            --text-color: #1C1C1E; /* dunkles Grau */
+            --text-secondary: rgba(28,28,30,0.6);
+            --gradient-start: #FF6B35;
+            --gradient-end: #FF8C61;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -30,8 +40,8 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-color);
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
             min-height: 100vh;
         }
 
@@ -59,7 +69,7 @@
             justify-content: center;
             font-size: 48px;
             font-weight: bold;
-            color: #667eea;
+            color: var(--primary-color);
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
         }
 
@@ -106,7 +116,7 @@
             gap: 12px;
             padding: 18px 36px;
             background: white;
-            color: #333;
+            color: var(--text-color);
             text-decoration: none;
             border-radius: 16px;
             font-weight: 600;
@@ -146,7 +156,7 @@
         .feature-card {
             text-align: center;
             padding: 30px 20px;
-            background: #f8f9fa;
+            background: var(--background-light);
             border-radius: 16px;
             border: 2px solid transparent;
             transition: all 0.3s ease;
@@ -154,7 +164,7 @@
 
         .feature-card:hover {
             transform: translateY(-5px);
-            border-color: #667eea;
+            border-color: var(--primary-color);
             box-shadow: 0 8px 24px rgba(0,0,0,0.1);
         }
 
@@ -166,18 +176,18 @@
         .feature-title {
             font-size: 1.3rem;
             font-weight: 600;
-            color: #333;
+            color: var(--text-color);
             margin-bottom: 15px;
         }
 
         .feature-text {
-            color: #666;
+            color: var(--text-secondary);
             line-height: 1.5;
         }
 
         /* App Mockup Section */
         .mockup-section {
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            background: linear-gradient(135deg, var(--gradient-end) 0%, var(--gradient-start) 100%);
             color: white;
             border-radius: 24px;
             padding: 60px 40px;
@@ -205,7 +215,7 @@
         .mockup-placeholder {
             width: 200px;
             height: 400px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
             border-radius: 20px;
             display: flex;
             align-items: center;
@@ -249,7 +259,7 @@
             align-items: center;
             gap: 10px;
             padding: 16px 32px;
-            background: #667eea;
+            background: var(--primary-color);
             color: white;
             text-decoration: none;
             border-radius: 12px;
@@ -259,17 +269,17 @@
         }
 
         .cta-btn:hover {
-            background: #5a6fd8;
+            background: #e45f2f;
             transform: translateY(-2px);
         }
 
         .cta-btn.secondary {
             background: transparent;
-            border: 2px solid #667eea;
+            border: 2px solid var(--primary-color);
         }
 
         .cta-btn.secondary:hover {
-            background: #667eea;
+            background: var(--primary-color);
         }
 
         footer {
@@ -357,15 +367,37 @@
             }
         }
     </style>
+    <script>
+      (() => {
+        const STORAGE_KEY = 'swapshop_lang';
+        const fallback = 'de';
+        const t = {
+          de: { app_name:'Swap&Shop', tagline:'Tauschen, Verschenken & Verkaufen mit Swipe-Spaß', hero_sub:'Finde lokale Matches, gründe Gruppen, starte deinen Store', coming:'Coming Soon - Bald verfügbar!', features:'Was macht Swap&Shop einzigartig?', f_swipe:'Swipe-Spaß', f_swipe_txt:'Entdecke Artikel per Swipe – Matches entstehen in Sekunden', f_search:'Smarte Suche', f_search_txt:'Finde genau was du suchst – kein endloses Scrollen', f_groups:'Lokale Gruppen', f_groups_txt:'Gründe Communities in deinem Ort und vernetze dich', f_store:'Eigener Store', f_store_txt:'Starte deinen Shop – privat oder professionell', mock_h:'So sieht Swap&Shop aus', mock_p:'Entdecke die App in Aktion', cta_h:'Wir suchen Verstärkung!', cta_p:'Hilf uns dabei, Swap&Shop noch besser zu machen', cta_test:'🧪 Tester:in werden', cta_cto:'💼 CTO werden' },
+          en: { app_name:'Swap&Shop', tagline:'Swap, Give away & Sell with swipe fun', hero_sub:'Find local matches, create groups, start your store', coming:'Coming soon', features:'What makes Swap&Shop unique?', f_swipe:'Swipe fun', f_swipe_txt:'Discover items with swipe – matches in seconds', f_search:'Smart search', f_search_txt:'Find exactly what you need – no endless scrolling', f_groups:'Local groups', f_groups_txt:'Create communities in your area and connect', f_store:'Your own store', f_store_txt:'Start your shop – private or professional', mock_h:'What Swap&Shop looks like', mock_p:'See the app in action', cta_h:'We are hiring!', cta_p:'Help us make Swap&Shop even better', cta_test:'🧪 Become a tester', cta_cto:'💼 Become CTO' },
+          fr: { app_name:'Swap&Shop', tagline:'Échanger, donner & vendre avec plaisir de swipe', hero_sub:'Trouvez des matchs locaux, créez des groupes, lancez votre boutique', coming:'Bientôt disponible', features:'Ce qui rend Swap&Shop unique', f_swipe:'Plaisir de swipe', f_swipe_txt:'Découvrez des articles par swipe – matchs en secondes', f_search:'Recherche intelligente', f_search_txt:'Trouvez exactement ce qu’il vous faut – sans défilement infini', f_groups:'Groupes locaux', f_groups_txt:'Créez des communautés locales et connectez-vous', f_store:'Votre boutique', f_store_txt:'Lancez votre shop – privé ou professionnel', mock_h:'À quoi ressemble Swap&Shop', mock_p:'Découvrez l’app en action', cta_h:'Nous recrutons !', cta_p:'Aidez-nous à améliorer Swap&Shop', cta_test:'🧪 Devenir testeur·euse', cta_cto:'💼 Devenir CTO' },
+          it: { app_name:'Swap&Shop', tagline:'Scambia, regala e vendi con lo swipe', hero_sub:'Trova match locali, crea gruppi, avvia il tuo store', coming:'In arrivo', features:'Cosa rende unica Swap&Shop', f_swipe:'Swipe divertente', f_swipe_txt:'Scopri articoli con lo swipe – match in pochi secondi', f_search:'Ricerca smart', f_search_txt:'Trova esattamente ciò che ti serve – senza scroll infinito', f_groups:'Gruppi locali', f_groups_txt:'Crea community nella tua zona e connettiti', f_store:'Il tuo store', f_store_txt:'Avvia il tuo shop – privato o professionale', mock_h:'Com’è Swap&Shop', mock_p:'Guarda l’app in azione', cta_h:'Stiamo cercando!', cta_p:'Aiutaci a migliorare Swap&Shop', cta_test:'🧪 Diventa tester', cta_cto:'💼 Diventa CTO' }
+        };
+        function setLang(lang){ const d=t[lang]||t[fallback]; document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(d[k]) el.textContent=d[k];}); localStorage.setItem(STORAGE_KEY,lang); }
+        document.addEventListener('DOMContentLoaded',()=>{ const sel=document.getElementById('lang-select'); const saved=localStorage.getItem(STORAGE_KEY)||fallback; if(sel){ sel.value=saved; setLang(saved); sel.addEventListener('change',()=>setLang(sel.value)); } });
+      })();
+    </script>
 </head>
 <body>
     <div class="container">
         <!-- Hero Section -->
         <section class="hero">
             <div class="logo">🔄</div>
-            <h1>Swap&Shop</h1>
-            <p class="hero-tagline">Tauschen, Verschenken & Verkaufen mit Swipe-Spaß</p>
-            <p class="hero-subtitle">Finde lokale Matches, gründe Gruppen, starte deinen Store</p>
+            <div style="display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;">
+                <h1 data-i18n="app_name">Swap&Shop</h1>
+                <select id="lang-select" aria-label="Language" style="padding:8px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.1);">
+                    <option value="de">DE</option>
+                    <option value="en">EN</option>
+                    <option value="fr">FR</option>
+                    <option value="it">IT</option>
+                </select>
+            </div>
+            <p class="hero-tagline" data-i18n="tagline">Tauschen, Verschenken & Verkaufen mit Swipe-Spaß</p>
+            <p class="hero-subtitle" data-i18n="hero_sub">Finde lokale Matches, gründe Gruppen, starte deinen Store</p>
         </section>
 
         <!-- Download Section -->
@@ -378,40 +410,40 @@
                     🤖 Google Play
                 </a>
             </div>
-            <p class="coming-soon">Coming Soon - Bald verfügbar!</p>
+            <p class="coming-soon" data-i18n="coming">Coming Soon - Bald verfügbar!</p>
         </section>
 
         <!-- Features Section -->
         <section class="features-section">
-            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px; color: #333;">Was macht Swap&Shop einzigartig?</h2>
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px; color: var(--text-color);" data-i18n="features">Was macht Swap&Shop einzigartig?</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🔄</div>
-                    <h3 class="feature-title">Swipe-Spaß</h3>
-                    <p class="feature-text">Entdecke Artikel per Swipe – Matches entstehen in Sekunden</p>
+                    <h3 class="feature-title" data-i18n="f_swipe">Swipe-Spaß</h3>
+                    <p class="feature-text" data-i18n="f_swipe_txt">Entdecke Artikel per Swipe – Matches entstehen in Sekunden</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔍</div>
-                    <h3 class="feature-title">Smarte Suche</h3>
-                    <p class="feature-text">Finde genau was du suchst – kein endloses Scrollen</p>
+                    <h3 class="feature-title" data-i18n="f_search">Smarte Suche</h3>
+                    <p class="feature-text" data-i18n="f_search_txt">Finde genau was du suchst – kein endloses Scrollen</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🏘️</div>
-                    <h3 class="feature-title">Lokale Gruppen</h3>
-                    <p class="feature-text">Gründe Communities in deinem Ort und vernetze dich</p>
+                    <h3 class="feature-title" data-i18n="f_groups">Lokale Gruppen</h3>
+                    <p class="feature-text" data-i18n="f_groups_txt">Gründe Communities in deinem Ort und vernetze dich</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🏪</div>
-                    <h3 class="feature-title">Eigener Store</h3>
-                    <p class="feature-text">Starte deinen Shop – privat oder professionell</p>
+                    <h3 class="feature-title" data-i18n="f_store">Eigener Store</h3>
+                    <p class="feature-text" data-i18n="f_store_txt">Starte deinen Shop – privat oder professionell</p>
                 </div>
             </div>
         </section>
 
         <!-- App Mockup Section -->
         <section class="mockup-section">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px; font-weight: 700;">So sieht Swap&Shop aus</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9;">Entdecke die App in Aktion</p>
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; font-weight: 700;" data-i18n="mock_h">So sieht Swap&Shop aus</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9;" data-i18n="mock_p">Entdecke die App in Aktion</p>
             <div class="mockup-container">
                 <div class="mockup">
                     <div class="mockup-placeholder">📱</div>
@@ -430,13 +462,13 @@
 
         <!-- CTA Section -->
         <section class="cta-section">
-            <h2 class="cta-title">Wir suchen Verstärkung!</h2>
-            <p class="cta-text">Hilf uns dabei, Swap&Shop noch besser zu machen</p>
+            <h2 class="cta-title" data-i18n="cta_h">Wir suchen Verstärkung!</h2>
+            <p class="cta-text" data-i18n="cta_p">Hilf uns dabei, Swap&Shop noch besser zu machen</p>
             <div class="cta-buttons">
-                <a href="mailto:info@swapnshop.app?subject=Tester:in werden" class="cta-btn">
+                <a href="mailto:info@swapnshop.app?subject=Tester:in werden" class="cta-btn" data-i18n="cta_test">
                     🧪 Tester:in werden
                 </a>
-                <a href="mailto:info@swapnshop.app?subject=CTO Position" class="cta-btn secondary">
+                <a href="mailto:info@swapnshop.app?subject=CTO Position" class="cta-btn secondary" data-i18n="cta_cto">
                     💼 CTO werden
                 </a>
             </div>
