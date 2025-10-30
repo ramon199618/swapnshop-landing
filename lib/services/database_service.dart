@@ -144,17 +144,72 @@ class DatabaseService {
 
   static Future<void> createStore(Map<String, dynamic> storeData) async {
     try {
-      await _client.from('stores').insert(storeData);
+      debugPrint('🔧 Creating store with data: $storeData');
+      debugPrint('🔧 Using table: ${SupabaseConfig.storesTable}');
+
+      // Stelle sicher, dass alle erforderlichen Felder vorhanden sind
+      final completeStoreData = {
+        ...storeData,
+        'status': 'active', // Füge Status hinzu, falls nicht vorhanden
+        'updated_at': DateTime.now().toIso8601String(), // Füge updated_at hinzu
+      };
+
+      // Prüfe zuerst, ob die Tabelle existiert
+      try {
+        await _client.from(SupabaseConfig.storesTable).select('id').limit(1);
+      } catch (e) {
+        if (e.toString().contains('404') ||
+            e.toString().contains('Not Found')) {
+          throw Exception(
+              'Stores-Tabelle existiert nicht in Supabase. Bitte führe fix_stores_table.sql aus.');
+        }
+        rethrow;
+      }
+
+      final response = await _client
+          .from(SupabaseConfig.storesTable)
+          .insert(completeStoreData)
+          .select();
+      debugPrint('✅ Store created successfully: $response');
     } catch (e) {
       debugPrint('❌ Error creating store: $e');
-      rethrow;
+      debugPrint('❌ Error type: ${e.runtimeType}');
+      debugPrint('❌ Error details: ${e.toString()}');
+
+      // Spezifische Fehlerbehandlung
+      final errorStr = e.toString().toLowerCase();
+
+      if (errorStr.contains('404') || errorStr.contains('not found')) {
+        throw Exception(
+            'Stores-Tabelle existiert nicht in Supabase.\n\nBitte führe diese Migration aus:\nsupabase_migration_stores_production.sql');
+      } else if (errorStr.contains('permission') ||
+          errorStr.contains('policy') ||
+          errorStr.contains('row-level security')) {
+        throw Exception(
+            'RLS-Policy-Fehler: Sie haben keine Berechtigung, einen Store zu erstellen.\nBitte melden Sie sich an und versuchen Sie es erneut.');
+      } else if (errorStr.contains('violates foreign key')) {
+        throw Exception('Ungültige user_id. Bitte melden Sie sich erneut an.');
+      } else if (errorStr.contains('null value in column')) {
+        final match = RegExp(r'column "(\w+)"').firstMatch(errorStr);
+        final column = match?.group(1) ?? 'unbekanntes Feld';
+        throw Exception(
+            'Pflichtfeld fehlt: $column. Bitte füllen Sie alle Felder aus.');
+      } else if (errorStr.contains('violates check constraint')) {
+        throw Exception(
+            'Ungültiger Wert in einem Feld. Bitte überprüfen Sie Ihre Eingaben.');
+      } else {
+        throw Exception('Store konnte nicht erstellt werden:\n${e.toString()}');
+      }
     }
   }
 
   static Future<Map<String, dynamic>?> getUserStore(String userId) async {
     try {
-      final response =
-          await _client.from('stores').select().eq('user_id', userId).single();
+      final response = await _client
+          .from(SupabaseConfig.storesTable)
+          .select()
+          .eq('user_id', userId)
+          .single();
 
       return response;
     } catch (e) {

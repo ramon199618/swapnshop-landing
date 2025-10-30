@@ -1,0 +1,31 @@
+:root {
+  --primary-color: #FF6B35; /* Warmes Orange */
+  --secondary-color: #FF8C61; /* Helleres Orange */
+  --accent-color: #FF6B35;
+  --background-light: #FFF7F3; /* sehr helles, warmes Off-White */
+  --text-color: #1C1C1E; /* dunkles Grau */
+  --text-secondary: rgba(28, 28, 30, 0.6);
+  --text-hint: rgba(28, 28, 30, 0.4);
+  --gradient-start: #FF6B35;
+  --gradient-end: #FF8C61;
+}
+
+/* Helfer-Klassen (optional) */
+.bg-app-gradient {
+  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+}
+
+.btn-app {
+  background: #fff;
+  color: var(--text-color);
+}
+
+.card-accent {
+  border-left: 4px solid var(--primary-color);
+}
+
+.text-primary-app {
+  color: var(--text-color);
+}
+
+
