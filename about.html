@@ -1,359 +1,26 @@
 <!DOCTYPE html>
-<!-- LIVE DEPLOY MARKER: Detaillierte Über uns Seite mit Mission + Funktionen + Werte + Geschichte Juni 2025 + Zukunft -->
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Über uns - Swap&Shop</title>
     <meta name="description" content="Erfahre mehr über Swap&Shop: Unsere Mission, Werte, Geschichte und Zukunft. Von Juni 2025 bis heute - die Story hinter der App.">
-    <link rel="icon" type="image/png" href="icon/icon.png">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .header {
-            text-align: center;
-            padding: 60px 0 40px;
-            color: white;
-        }
-
-        .header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .header p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-        }
-
-        .content-section {
-            background: white;
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin-bottom: 60px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #333;
-            font-weight: 700;
-        }
-
-        .mission-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin-bottom: 60px;
-            text-align: center;
-        }
-
-        .mission-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            font-weight: 700;
-        }
-
-        .mission-section p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0.95;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .feature-card {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 16px;
-            border-left: 4px solid #667eea;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-card h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-
-        .feature-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .team-section {
-            background: white;
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin-bottom: 60px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-
-        .team-member {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .team-member h3 {
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1.5rem;
-        }
-
-        .team-member .role {
-            color: #666;
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-
-        .team-member p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .values-section {
-            background: #f8f9fa;
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin-bottom: 60px;
-        }
-
-        .values-list {
-            list-style: none;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .values-list li {
-            background: white;
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 12px;
-            border-left: 4px solid #667eea;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .values-list li:before {
-            content: "✓";
-            color: #667eea;
-            font-weight: bold;
-            margin-right: 15px;
-        }
-
-        .history-section {
-            background: white;
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin-bottom: 60px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        .history-section h2 {
-            color: #333;
-            margin-bottom: 30px;
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-
-        .history-section p {
-            color: #666;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-        }
-
-        .future-section {
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-            color: white;
-            border-radius: 24px;
-            padding: 60px 40px;
-            margin-bottom: 60px;
-        }
-
-        .future-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            font-weight: 700;
-        }
-
-        .future-features {
-            list-style: none;
-            max-width: 800px;
-            margin: 0 auto 30px;
-        }
-
-        .future-features li {
-            background: rgba(255,255,255,0.1);
-            margin-bottom: 15px;
-            padding: 15px 20px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-
-        .future-features li:before {
-            content: "🚀";
-            margin-right: 15px;
-        }
-
-        .contact-info {
-            text-align: center;
-            color: white;
-            font-size: 1.1rem;
-        }
-
-        .back-link {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 16px 32px;
-            background: rgba(255,255,255,0.1);
-            color: white;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .back-btn:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
-
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            border-radius: 24px 24px 0 0;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #bdc3c7;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            color: #95a5a6;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .container {
-                padding: 0 15px;
-            }
-            
-            .content-section,
-            .mission-section,
-            .team-section,
-            .values-section,
-            .history-section,
-            .future-section {
-                padding: 40px 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="styles/info-pages.css">
 </head>
 <body>
-    <div class="container">
-        <div class="back-link">
-            <a href="index.html" class="back-btn">
-                ← Zurück zur Startseite
-            </a>
-        </div>
-
-        <div class="header">
+    <div class="info-page-wrapper">
+        <header class="info-header">
             <h1>Über Swap&Shop</h1>
             <p>Die Story hinter der App für lokale Gemeinschaften</p>
-        </div>
+            <a href="/" class="primary-btn">← Zurück zur Startseite</a>
+        </header>
 
-        <section class="mission-section">
+        <main class="info-card">
             <h2>Unsere Mission</h2>
             <p>Swap&Shop macht Tauschen, Verschenken und Verkaufen einfach, schnell – und ein Stück spielerischer. In der App kannst du Artikel sicher anbieten oder finden, per Swipe-Logik matchen, lokale Gruppen gründen und dich vernetzen. Alle Artikel werden gespeichert und sind direkt über die Suche auffindbar – ohne endloses Scrollen.</p>
-        </section>
 
-        <section class="content-section">
-            <h2 class="section-title">Was macht Swap&Shop einzigartig?</h2>
+            <h2>Was macht Swap&Shop einzigartig?</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <h3>Drei Modi, ein Flow</h3>
@@ -376,31 +43,25 @@
                     <p>Starte deinen Shop in der App – privat (Secondhand) oder professioneller Auftritt.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Radius & Nähe</h3>
+                    <h3>Radius &amp; Nähe</h3>
                     <p>Finde Dinge und Menschen in deiner Umgebung.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Fair & zugänglich</h3>
+                    <h3>Fair &amp; zugänglich</h3>
                     <p>Hilf einander, spare Geld – neu kaufen ist nicht immer nötig.</p>
                 </div>
             </div>
-            <div class="feature-card" style="max-width: 800px; margin: 0 auto; background: #fff3cd; border-left-color: #ffc107;">
-                <h3 style="color: #856404;">Hinweis zu Sicherheit</h3>
-                <p style="color: #856404;">Nutzer-Verifizierung und Meldesystem sind geplant/in Arbeit. Wir versprechen hier nichts, was noch nicht live ist.</p>
-            </div>
-        </section>
 
-        <section class="team-section">
-            <h2 class="section-title">Unser Team</h2>
-            <div class="team-member">
-                <h3>Ramon Bieri</h3>
-                <p class="role">Gründer & Entwickler</p>
-                <p>Ramon hat Swap&Shop 2025 gestartet, um das zu bauen, was in großen Gruppen oft fehlt: ein einfacher, spielerischer Weg, Dinge wiederzufinden – ohne stundenlang zu scrollen – und Menschen lokal zusammenzubringen.</p>
+            <div class="feature-card warning">
+                <h3>Hinweis zu Sicherheit</h3>
+                <p>Nutzer-Verifizierung und Meldesystem sind geplant/in Arbeit. Wir versprechen hier nichts, was noch nicht live ist.</p>
             </div>
-        </section>
 
-        <section class="values-section">
-            <h2 class="section-title">Unsere Werte</h2>
+            <h2>Unser Team</h2>
+            <p><strong>Ramon Bieri</strong> – Gründer &amp; Entwickler</p>
+            <p>Ramon hat Swap&Shop 2025 gestartet, um das zu bauen, was in großen Gruppen oft fehlt: ein einfacher, spielerischer Weg, Dinge wiederzufinden – ohne stundenlang zu scrollen – und Menschen lokal zusammenzubringen.</p>
+
+            <h2>Unsere Werte</h2>
             <ul class="values-list">
                 <li>Gemeinschaft: Lokal vernetzt statt anonym – aber wer möchte, kann auch anonym bleiben.</li>
                 <li>Vertrauen: Klare Regeln, faire Deals – und Schritt für Schritt mehr Schutzfunktionen.</li>
@@ -410,39 +71,24 @@
                 <li>Innovation: Wir entwickeln die App kontinuierlich weiter.</li>
                 <li>Nachhaltigkeit (als Nebenaspekt): Wiederverwenden statt wegwerfen – wenn's passt.</li>
             </ul>
-        </section>
 
-        <section class="history-section">
             <h2>Geschichte</h2>
             <p>Swap&Shop wurde im Juni 2025 gestartet – aus der Idee, das Beste aus lokalen Facebook-Gruppen in eine fokussierte App zu bringen: weniger Chaos, mehr Treffer, direkter Kontakt.</p>
-        </section>
 
-        <section class="future-section">
             <h2>Zukunft</h2>
-            <p style="text-align: center; margin-bottom: 30px; font-size: 1.1rem;">Wir arbeiten laufend an neuen Features und suchen Tester:innen für die nächsten Schritte:</p>
+            <p>Wir arbeiten laufend an neuen Features und suchen Tester:innen für die nächsten Schritte:</p>
             <ul class="future-features">
                 <li>Beta-Tests neuer Funktionen (Verifizierung, Meldesystem, Store-Ausbau)</li>
                 <li>Einführung in lokalen Gemeinschaften: In jedem Dorf/Quartier leicht eigene Gruppen starten</li>
                 <li>Besseres Radius-Matching und gezielte Suche</li>
                 <li>Mehrsprachige Unterstützung</li>
             </ul>
+
             <div class="contact-info">
                 <p><strong>Interesse am Testen? Schreib uns!</strong></p>
+                <p><a href="mailto:info@swapnshop.app">info@swapnshop.app</a></p>
             </div>
-        </section>
+        </main>
     </div>
-
-    <footer>
-        <div class="footer-links">
-            <a href="privacy.html">Datenschutz</a>
-            <a href="terms.html">AGB</a>
-            <a href="support.html">Support</a>
-            <a href="index.html">Startseite</a>
-            <a href="mailto:info@swapnshop.app">Kontakt</a>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Swap&Shop. Alle Rechte vorbehalten.</p>
-        </div>
-    </footer>
 </body>
 </html>
